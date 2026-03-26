@@ -36,27 +36,63 @@
         .hero-gradient { background: linear-gradient(135deg, #004533 0%, #010a08 100%); }
         .section-tag { letter-spacing: 0.4em; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #9e8b56; margin-bottom: 1.5rem; display: block; }
         .ncc-badge { background: linear-gradient(135deg, #9e8b56 0%, #7d6e42 100%); }
+        
+        /* Mobile Menu Animation */
+        #mobile-menu { transition: transform 0.4s ease-in-out; transform: translateX(100%); }
+        #mobile-menu.active { transform: translateX(0); }
+
+        /* Scroll Reveal Effect */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Back to Top Button */
+        #backToTop { opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        #backToTop.visible { opacity: 1; pointer-events: auto; }
     </style>
 </head>
-<body class="bg-bcgTan text-slate-900 selection:bg-bcgGold selection:text-white">
+<body class="bg-bcgTan text-slate-900 selection:bg-bcgGold selection:text-white overflow-x-hidden">
+
+    <button id="backToTop" onclick="window.scrollTo(0,0)" class="fixed bottom-8 right-8 z-[110] w-12 h-12 bg-bcgGold text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-bcgGreen transition-colors">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <nav class="fixed top-0 w-full z-[100] glass-nav">
-        <div class="max-w-[1500px] mx-auto px-10 py-6 flex justify-between items-center">
+        <div class="max-w-[1500px] mx-auto px-6 md:px-10 py-6 flex justify-between items-center">
             <div class="flex items-center gap-6">
                 <div class="flex flex-col">
-                    <span class="text-2xl font-black tracking-tighter text-bcgGreen uppercase leading-none">Saurabh Srivastav</span>
-                    <span class="text-[9px] font-bold text-bcgGold uppercase tracking-[0.4em] mt-1">Strategic Business Analyst</span>
+                    <span class="text-xl md:text-2xl font-black tracking-tighter text-bcgGreen uppercase leading-none">Saurabh Srivastav</span>
+                    <span class="text-[8px] md:text-[9px] font-bold text-bcgGold uppercase tracking-[0.4em] mt-1">Strategic Business Analyst</span>
                 </div>
             </div>
+
             <div class="hidden xl:flex gap-12 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
                 <a href="#impact" class="hover:text-bcgGreen transition-all">Impact</a>
                 <a href="#experience" class="hover:text-bcgGreen transition-all">Odyssey</a>
                 <a href="#intellect" class="hover:text-bcgGreen transition-all">Intellect</a>
                 <a href="#leadership" class="hover:text-bcgGreen transition-all">Honors</a>
             </div>
-            <a href="mailto:saurabhsrivastav.db@gmail.com" class="bg-bcgGreen text-white px-8 py-3 rounded-full text-xs font-bold hover:bg-bcgGold transition-all shadow-xl">HIRE STRATEGY</a>
+
+            <div class="flex items-center gap-4">
+                <a href="mailto:saurabhsrivastav.db@gmail.com" class="hidden sm:block bg-bcgGreen text-white px-6 md:px-8 py-3 rounded-full text-[10px] md:text-xs font-bold hover:bg-bcgGold transition-all shadow-xl">HIRE STRATEGY</a>
+                
+                <button id="menu-btn" class="xl:hidden text-bcgGreen text-2xl p-2">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
         </div>
     </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-bcgGreen z-[105] flex flex-col items-center justify-center text-white space-y-10">
+        <button id="close-btn" class="absolute top-8 right-8 text-3xl text-bcgGold"><i class="fas fa-times"></i></button>
+        <a href="#impact" class="mobile-link text-3xl font-serif italic">Impact</a>
+        <a href="#experience" class="mobile-link text-3xl font-serif italic">Odyssey</a>
+        <a href="#intellect" class="mobile-link text-3xl font-serif italic">Intellect</a>
+        <a href="#leadership" class="mobile-link text-3xl font-serif italic">Honors</a>
+        <div class="pt-10 flex gap-8 text-2xl text-bcgGold">
+            <a href="https://www.linkedin.com/in/saurabh-srivastav-in/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/saurabhsrivastav-in"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
 
     <section class="relative min-h-screen flex items-center pt-24 hero-gradient text-white px-10 overflow-hidden">
         <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
@@ -68,23 +104,23 @@
         <div class="max-w-[1500px] mx-auto w-full relative z-10">
             <div class="max-w-5xl">
                 <span class="section-tag">Value Architect & Digital Strategist</span>
-                <h1 class="text-7xl md:text-9xl font-serif leading-[0.9] mb-12">
+                <h1 class="text-5xl md:text-7xl lg:text-9xl font-serif leading-[0.9] mb-12">
                     Thriving in <span class="italic text-bcgGold">Challenge.</span> <br>Adding Massive Value.
                 </h1>
-                <p class="text-xl md:text-3xl text-slate-300 font-light leading-relaxed mb-16 max-w-3xl">
+                <p class="text-lg md:text-3xl text-slate-300 font-light leading-relaxed mb-16 max-w-3xl">
                     Driving global digital transformation through "Out of the Box" thinking. Managing stakeholders across <span class="text-white font-bold">5 Continents</span> with onsite leadership experience in <span class="text-white font-bold text-bcgGold">Europe.</span>
                 </p>
-                <div class="flex flex-wrap gap-12">
+                <div class="flex flex-wrap gap-8 md:gap-12">
                     <div class="flex flex-col">
-                        <span class="text-bcgGold text-5xl font-black mb-1">€460K</span>
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">€460K</span>
                         <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">Cost Avoidance</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-bcgGold text-5xl font-black mb-1">$424K</span>
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">$424K</span>
                         <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">APAC Revenue Growth</span>
                     </div>
                     <div class="flex flex-col">
-                        <span class="text-bcgGold text-5xl font-black mb-1">25+</span>
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">25+</span>
                         <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">Global Modules</span>
                     </div>
                 </div>
@@ -92,12 +128,12 @@
         </div>
     </section>
 
-    <section id="impact" class="py-32 px-10 bg-white">
+    <section id="impact" class="py-32 px-10 bg-white reveal">
         <div class="max-w-[1500px] mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
                 <div class="max-w-2xl">
                     <span class="section-tag">Value Realization</span>
-                    <h2 class="text-6xl font-serif text-bcgGreen">Exceptional Results.</h2>
+                    <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen">Exceptional Results.</h2>
                 </div>
                 <p class="text-slate-500 text-lg max-w-sm italic">Translating complex business challenges into quantifiable economic impact.</p>
             </div>
@@ -139,10 +175,10 @@
         </div>
     </section>
 
-    <section id="experience" class="py-32 bg-bcgTan/50 px-10">
+    <section id="experience" class="py-32 bg-bcgTan/50 px-10 reveal">
         <div class="max-w-[1300px] mx-auto">
             <span class="section-tag text-center">Global Timeline</span>
-            <h2 class="text-6xl font-serif text-bcgGreen text-center mb-32 italic underline underline-offset-[20px] decoration-bcgGold">The Strategic Narrative</h2>
+            <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen text-center mb-32 italic underline underline-offset-[20px] decoration-bcgGold">The Strategic Narrative</h2>
 
             <div class="space-y-40 relative">
                 <div class="absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 hidden lg:block"></div>
@@ -153,7 +189,7 @@
                         <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">Algoleap</h3>
                         <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Global Client: CBRE Digital & Tech</p>
                     </div>
-                    <div class="bg-white p-12 rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
+                    <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
                         <h4 class="text-xl font-bold mb-6 text-bcgGreen underline decoration-bcgGold">Strategic Business Analyst</h4>
                         <p class="text-slate-600 mb-6 italic leading-relaxed">Directing digital tech roadmaps while managing teams across India, South East Asia, Pacific, and America.</p>
                         <ul class="space-y-4 text-sm text-slate-600">
@@ -164,13 +200,13 @@
                     </div>
                 </div>
 
-                <div class="relative grid lg:grid-cols-2 gap-20 items-center group">
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
                     <div class="lg:order-2">
                         <span class="text-3xl font-serif italic text-bcgGold">2023 — 2024</span>
                         <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">ArcelorMittal</h3>
                         <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Onsite Luxembourg leadership</p>
                     </div>
-                    <div class="bg-bcgGreen p-12 rounded-[3rem] text-white group-hover:shadow-2xl transition-all">
+                    <div class="bg-bcgGreen p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-white group-hover:shadow-2xl transition-all">
                         <h4 class="text-xl font-bold mb-6 text-bcgGold">Business Analyst (Europe)</h4>
                         <p class="text-slate-300 mb-6 italic">Partnering with European C-suite executives to redefine digital finance landscapes across France, Spain, and Luxembourg.</p>
                         <ul class="space-y-4 text-sm text-slate-300">
@@ -181,24 +217,24 @@
                     </div>
                 </div>
 
-                <div class="relative grid lg:grid-cols-2 gap-20 items-center group">
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
                     <div class="lg:text-right">
                         <span class="text-3xl font-serif italic text-bcgGold">2022 — 2023</span>
                         <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">West End</h3>
                         <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Strategic Business Support</p>
                     </div>
-                    <div class="bg-white p-12 rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
+                    <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
                         <p class="text-slate-600 leading-relaxed italic">Bridged high-level business requirements with technical data hygiene. Optimized financial data reporting structures to ensure 100% operational continuity during platform transitions.</p>
                     </div>
                 </div>
 
-                <div class="relative grid lg:grid-cols-2 gap-20 items-center group">
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
                     <div class="lg:order-2">
                         <span class="text-3xl font-serif italic text-bcgGold">2020 — 2022</span>
                         <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">AM/NS India</h3>
                         <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">SAP Functional Specialist</p>
                     </div>
-                    <div class="bg-slate-50 p-12 rounded-[3rem] border border-slate-200 group-hover:border-bcgGreen transition-all">
+                    <div class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-slate-200 group-hover:border-bcgGreen transition-all">
                         <h4 class="text-xl font-bold mb-6 text-bcgGreen">SAP FICO Consultant</h4>
                         <ul class="space-y-4 text-sm text-slate-600">
                             <li class="flex gap-4"><i class="fas fa-award text-bcgGold mt-1"></i><span>Developed <strong>Automatic Salary JV Program</strong> (Innovation Award).</span></li>
@@ -211,23 +247,23 @@
         </div>
     </section>
 
-    <section id="intellect" class="py-32 bg-bcgDark text-white px-10">
+    <section id="intellect" class="py-32 bg-bcgDark text-white px-10 reveal">
         <div class="max-w-[1500px] mx-auto">
             <span class="section-tag">Deep Research</span>
-            <h2 class="text-6xl font-serif mb-24 leading-tight">Out of the Box <br><span class="text-bcgGold">Intellect.</span></h2>
+            <h2 class="text-5xl md:text-6xl font-serif mb-24 leading-tight">Out of the Box <br><span class="text-bcgGold">Intellect.</span></h2>
             
             <div class="grid lg:grid-cols-3 gap-12">
-                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-white/5 transition-all">
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
                     <i class="fas fa-brain text-bcgGold text-4xl mb-10"></i>
                     <h4 class="text-2xl font-bold mb-4">Neural Systems</h4>
                     <p class="text-slate-400 text-sm leading-relaxed italic">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking.</p>
                 </div>
-                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-white/5 transition-all">
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
                     <i class="fas fa-microchip text-bcgGold text-4xl mb-10"></i>
                     <h4 class="text-2xl font-bold mb-4">AI: A Black Box</h4>
                     <p class="text-slate-400 text-sm leading-relaxed italic">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models.</p>
                 </div>
-                <div class="p-12 border border-white/10 rounded-[3rem] hover:bg-white/5 transition-all">
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
                     <i class="fas fa-chart-pie text-bcgGold text-4xl mb-10"></i>
                     <h4 class="text-2xl font-bold mb-4">FMCG BCG Matrix</h4>
                     <p class="text-slate-400 text-sm leading-relaxed italic">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
@@ -254,50 +290,50 @@
         </div>
     </section>
 
-    <section id="leadership" class="py-32 bg-white px-10">
+    <section id="leadership" class="py-32 bg-white px-10 reveal">
         <div class="max-w-[1500px] mx-auto">
             <div class="grid lg:grid-cols-2 gap-24 items-center">
                 <div>
                     <span class="section-tag">Elite Discipline</span>
-                    <h2 class="text-6xl font-serif text-bcgGreen mb-12">Command & Integrity.</h2>
+                    <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen mb-12">Command & Integrity.</h2>
                     <div class="space-y-12">
                         <div class="flex gap-8 items-start">
-                            <div class="w-20 h-20 shrink-0 ncc-badge flex items-center justify-center rounded-3xl shadow-xl">
-                                <i class="fas fa-shield-alt text-white text-3xl"></i>
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 ncc-badge flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-shield-alt text-white text-2xl md:text-3xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-black text-bcgGreen">NCC 'C' Certificate (Army Wing)</h4>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">NCC 'C' Certificate (Army Wing)</h4>
                                 <p class="text-slate-500 mt-4 leading-relaxed">The highest possible level in the National Cadet Corps. Represents peak physical discipline, tactical leadership, and national-level service commitment.</p>
                             </div>
                         </div>
                         <div class="flex gap-8 items-start">
-                            <div class="w-20 h-20 shrink-0 bg-bcgGreen flex items-center justify-center rounded-3xl shadow-xl">
-                                <i class="fas fa-award text-bcgGold text-3xl"></i>
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGreen flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-award text-bcgGold text-2xl md:text-3xl"></i>
                             </div>
                             <div>
-                                <h4 class="text-2xl font-black text-bcgGreen">CBRE SPOT Award</h4>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">CBRE SPOT Award</h4>
                                 <p class="text-slate-500 mt-4 leading-relaxed">Recognized for "High Impact Delivery & Global Stakeholder Coordination" across APAC and European tech modules.</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="p-10 bg-bcgTan rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                <div class="grid grid-cols-2 gap-4 md:gap-6">
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
                         <i class="fas fa-users-crown text-bcgGold mb-6 text-2xl"></i>
                         <h5 class="font-bold text-xs uppercase mb-2">Class Lead</h5>
                         <p class="text-[10px] text-slate-400 italic">5 Years of Liaison Leadership for BBA/MBA programs.</p>
                     </div>
-                    <div class="p-10 bg-bcgTan rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
                         <i class="fas fa-leaf text-bcgGold mb-6 text-2xl"></i>
                         <h5 class="font-bold text-xs uppercase mb-2">UNFCCC Green</h5>
                         <p class="text-[10px] text-slate-400 italic">Global Climate Reality Certified (USA/Online).</p>
                     </div>
-                    <div class="p-10 bg-bcgTan rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
                         <i class="fas fa-handshake-angle text-bcgGold mb-6 text-2xl"></i>
                         <h5 class="font-bold text-xs uppercase mb-2">NSS Certified</h5>
                         <p class="text-[10px] text-slate-400 italic">240+ Hours of high-impact community leadership.</p>
                     </div>
-                    <div class="p-10 bg-bcgTan rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
                         <i class="fas fa-briefcase text-bcgGold mb-6 text-2xl"></i>
                         <h5 class="font-bold text-xs uppercase mb-2">Placement Team</h5>
                         <p class="text-[10px] text-slate-400 italic">Strategized placement roadmaps for 117+ peers.</p>
@@ -326,7 +362,6 @@
                 <a href="https://github.com/saurabhsrivastav-in" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fab fa-github"></i></a>
                 <a href="mailto:saurabhsrivastav.db@gmail.com" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fas fa-envelope"></i></a>
                 
-                <!-- Phone icon with tooltip -->
                 <div class="relative group">
                     <i class="fas fa-phone text-4xl text-slate-300 hover:text-bcgGold transition-all cursor-pointer"></i>
                     <span class="absolute bottom-full mb-2 hidden group-hover:inline-block bg-bcgGold text-black font-semibold px-3 py-1 rounded whitespace-nowrap">
@@ -340,5 +375,41 @@
         </div>
     </footer>
 
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const toggleMenu = () => mobileMenu.classList.toggle('active');
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Scroll Reveal & Back-to-Top Logic
+        const backToTop = document.getElementById('backToTop');
+        const reveals = document.querySelectorAll('.reveal');
+
+        window.addEventListener('scroll', () => {
+            // Show/Hide Back to Top
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+
+            // Trigger Scroll Reveal
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
