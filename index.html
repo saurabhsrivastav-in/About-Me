@@ -13,11 +13,11 @@
             theme: {
                 extend: {
                     colors: {
-                        bcgGreen: '#004533',      /* Deep BCG Green */
-                        bcgEmerald: '#006b54',    /* Accents */
-                        bcgGold: '#9e8b56',       /* Champagne Gold */
-                        bcgTan: '#FDFCFB',        /* Clean Paper */
-                        bcgDark: '#010a08'        /* Midnight Contrast */
+                        bcgGreen: '#004533',
+                        bcgEmerald: '#006b54',
+                        bcgGold: '#9e8b56',
+                        bcgTan: '#FDFCFB',
+                        bcgDark: '#010a08'
                     },
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
@@ -37,15 +37,12 @@
         .section-tag { letter-spacing: 0.4em; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #9e8b56; margin-bottom: 1.5rem; display: block; }
         .ncc-badge { background: linear-gradient(135deg, #9e8b56 0%, #7d6e42 100%); }
         
-        /* Mobile Menu Animation */
         #mobile-menu { transition: transform 0.4s ease-in-out; transform: translateX(100%); }
         #mobile-menu.active { transform: translateX(0); }
 
-        /* Scroll Reveal Effect */
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Back to Top Button */
         #backToTop { opacity: 0; transition: opacity 0.3s; pointer-events: none; }
         #backToTop.visible { opacity: 1; pointer-events: auto; }
     </style>
@@ -74,7 +71,6 @@
 
             <div class="flex items-center gap-4">
                 <a href="mailto:saurabhsrivastav.db@gmail.com" class="hidden sm:block bg-bcgGreen text-white px-6 md:px-8 py-3 rounded-full text-[10px] md:text-xs font-bold hover:bg-bcgGold transition-all shadow-xl">HIRE STRATEGY</a>
-                
                 <button id="menu-btn" class="xl:hidden text-bcgGreen text-2xl p-2">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -292,7 +288,7 @@
 
     <section id="leadership" class="py-32 bg-white px-10 reveal">
         <div class="max-w-[1500px] mx-auto">
-            <div class="grid lg:grid-cols-2 gap-24 items-center">
+            <div class="grid lg:grid-cols-2 gap-24 items-start">
                 <div>
                     <span class="section-tag">Elite Discipline</span>
                     <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen mb-12">Command & Integrity.</h2>
@@ -303,9 +299,10 @@
                             </div>
                             <div>
                                 <h4 class="text-xl md:text-2xl font-black text-bcgGreen">NCC 'C' Certificate (Army Wing)</h4>
-                                <p class="text-slate-500 mt-4 leading-relaxed">The highest possible level in the National Cadet Corps. Represents peak physical discipline, tactical leadership, and national-level service commitment.</p>
+                                <p class="text-slate-500 mt-4 leading-relaxed">The highest possible level in the National Cadet Corps. Represents peak physical discipline and national-level service commitment.</p>
                             </div>
                         </div>
+                        
                         <div class="flex gap-8 items-start">
                             <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGreen flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
                                 <i class="fas fa-award text-bcgGold text-2xl md:text-3xl"></i>
@@ -315,9 +312,30 @@
                                 <p class="text-slate-500 mt-4 leading-relaxed">Recognized for "High Impact Delivery & Global Stakeholder Coordination" across APAC and European tech modules.</p>
                             </div>
                         </div>
+
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-star text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">Algoleap Customer Impact Award</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">Awarded for delivering exceptional customer value and driving measurable business impact through strategic initiatives.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 border-2 border-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-bullseye text-bcgGold text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">Customer Centricity Appreciation</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">Performance recognition for maintaining high customer focus and providing consistent contributions to organizational goals.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 gap-4 md:gap-6">
+
+                <div class="grid grid-cols-2 gap-4 md:gap-6 sticky top-32">
                     <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
                         <i class="fas fa-users-crown text-bcgGold mb-6 text-2xl"></i>
                         <h5 class="font-bold text-xs uppercase mb-2">Class Lead</h5>
@@ -345,14 +363,9 @@
 
     <section class="py-24 bg-bcgDark overflow-hidden whitespace-nowrap">
         <div class="inline-block animate-marquee text-[11px] font-bold text-white/30 uppercase tracking-[0.5em]">
-            HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP • AGILE BUSINESS CONFERENCE • BFSI INSIGHT SUMMIT • TEDx AGRA • CLIMATE REALITY USA • HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP • AGILE BUSINESS CONFERENCE
+            HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP • AGILE BUSINESS CONFERENCE • BFSI INSIGHT SUMMIT • TEDx AGRA • CLIMATE REALITY USA • HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP
         </div>
     </section>
-
-    <style>
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .animate-marquee { animation: marquee 35s linear infinite; }
-    </style>
 
     <footer class="bg-white py-32 px-10 text-center border-t border-slate-100">
         <div class="max-w-4xl mx-auto">
@@ -376,7 +389,6 @@
     </footer>
 
     <script>
-        // Mobile Menu Logic
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -388,24 +400,20 @@
         closeBtn.addEventListener('click', toggleMenu);
         mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
 
-        // Scroll Reveal & Back-to-Top Logic
         const backToTop = document.getElementById('backToTop');
         const reveals = document.querySelectorAll('.reveal');
 
         window.addEventListener('scroll', () => {
-            // Show/Hide Back to Top
             if (window.scrollY > 500) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
             }
 
-            // Trigger Scroll Reveal
             reveals.forEach(el => {
                 const windowHeight = window.innerHeight;
                 const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 150;
-                if (elementTop < windowHeight - elementVisible) {
+                if (elementTop < windowHeight - 150) {
                     el.classList.add('active');
                 }
             });
