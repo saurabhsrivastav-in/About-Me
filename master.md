@@ -189,7 +189,7 @@
                         <h4 class="text-xl font-bold mb-6 text-bcgGreen underline decoration-bcgGold">Strategic Business Analyst</h4>
                         <p class="text-slate-600 mb-6 italic leading-relaxed">Directing digital tech roadmaps while managing teams across India, South East Asia, Pacific, and America.</p>
                         <ul class="space-y-4 text-sm text-slate-600">
-                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Managing <strong>25+ modules</strong> for global finance transformation.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Managing <strong>5+ modules</strong> for global finance transformation.</span></li>
                             <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Localized Spanish market processes, boosting user satisfaction scores.</span></li>
                             <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Reduced incident recurring by 30% via root-cause problem solving.</span></li>
                         </ul>
