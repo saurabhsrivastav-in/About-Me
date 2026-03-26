@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurabh Srivastav | Strategic Business Analyst</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bcgGreen: '#004533',
+                        bcgEmerald: '#006b54',
+                        bcgGold: '#9e8b56',
+                        bcgTan: '#FDFCFB',
+                        bcgDark: '#010a08'
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid rgba(0, 69, 51, 0.1); }
+        .bento-card { transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1); border: 1px solid #eef0f2; background: #fff; }
+        .bento-card:hover { transform: translateY(-10px); border-color: #9e8b56; box-shadow: 0 30px 60px -12px rgba(0, 69, 51, 0.12); }
+        .hero-gradient { background: linear-gradient(135deg, #004533 0%, #010a08 100%); }
+        .section-tag { letter-spacing: 0.4em; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #9e8b56; margin-bottom: 1.5rem; display: block; }
+        .ncc-badge { background: linear-gradient(135deg, #9e8b56 0%, #7d6e42 100%); }
+        
+        #mobile-menu { transition: transform 0.4s ease-in-out; transform: translateX(100%); }
+        #mobile-menu.active { transform: translateX(0); }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        #backToTop { opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        #backToTop.visible { opacity: 1; pointer-events: auto; }
+    </style>
+</head>
+<body class="bg-bcgTan text-slate-900 selection:bg-bcgGold selection:text-white overflow-x-hidden">
+
+    <button id="backToTop" onclick="window.scrollTo(0,0)" class="fixed bottom-8 right-8 z-[110] w-12 h-12 bg-bcgGold text-white rounded-full shadow-2xl flex items-center justify-center hover:bg-bcgGreen transition-colors">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <nav class="fixed top-0 w-full z-[100] glass-nav">
+        <div class="max-w-[1500px] mx-auto px-6 md:px-10 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <div class="flex flex-col">
+                    <span class="text-xl md:text-2xl font-black tracking-tighter text-bcgGreen uppercase leading-none">Saurabh Srivastav</span>
+                    <span class="text-[8px] md:text-[9px] font-bold text-bcgGold uppercase tracking-[0.4em] mt-1">Strategic Business Analyst</span>
+                </div>
+            </div>
+
+            <div class="hidden xl:flex gap-12 text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500">
+                <a href="#impact" class="hover:text-bcgGreen transition-all">Impact</a>
+                <a href="#experience" class="hover:text-bcgGreen transition-all">Odyssey</a>
+                <a href="#intellect" class="hover:text-bcgGreen transition-all">Intellect</a>
+                <a href="#leadership" class="hover:text-bcgGreen transition-all">Honors</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="mailto:saurabhsrivastav.db@gmail.com" class="hidden sm:block bg-bcgGreen text-white px-6 md:px-8 py-3 rounded-full text-[10px] md:text-xs font-bold hover:bg-bcgGold transition-all shadow-xl">HIRE STRATEGY</a>
+                <button id="menu-btn" class="xl:hidden text-bcgGreen text-2xl p-2">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="fixed inset-0 bg-bcgGreen z-[105] flex flex-col items-center justify-center text-white space-y-10">
+        <button id="close-btn" class="absolute top-8 right-8 text-3xl text-bcgGold"><i class="fas fa-times"></i></button>
+        <a href="#impact" class="mobile-link text-3xl font-serif italic">Impact</a>
+        <a href="#experience" class="mobile-link text-3xl font-serif italic">Odyssey</a>
+        <a href="#intellect" class="mobile-link text-3xl font-serif italic">Intellect</a>
+        <a href="#leadership" class="mobile-link text-3xl font-serif italic">Honors</a>
+        <div class="pt-10 flex gap-8 text-2xl text-bcgGold">
+            <a href="https://www.linkedin.com/in/saurabh-srivastav-in/"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com/saurabhsrivastav-in"><i class="fab fa-github"></i></a>
+        </div>
+    </div>
+
+    <section class="relative min-h-screen flex items-center pt-24 hero-gradient text-white px-10 overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-10">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="w-full h-full scale-150">
+                <path fill="#9e8b56" d="M40,-60C53.3,-53.3,66.7,-46.7,73.3,-33.3C80,-20,80,-6.7,76.7,6.7C73.3,20,66.7,33.3,56.7,46.7C46.7,60,33.3,73.3,20,76.7C6.7,80,-6.7,73.3,-20,66.7C-33.3,60,-46.7,53.3,-60,40C-73.3,26.7,-86.7,13.3,-83.3,0C-80,-13.3,-60,-26.7,-46.7,-40C-33.3,-53.3,-16.7,-66.7,-3.3,-70C10,-73.3,26.7,-66.7,40,-60Z" transform="translate(100 100)" />
+            </svg>
+        </div>
+        
+        <div class="max-w-[1500px] mx-auto w-full relative z-10">
+            <div class="max-w-5xl">
+                <span class="section-tag">Value Architect & Digital Strategist</span>
+                <h1 class="text-5xl md:text-7xl lg:text-9xl font-serif leading-[0.9] mb-12">
+                    Thriving in <span class="italic text-bcgGold">Challenge.</span> <br>Adding Massive Value.
+                </h1>
+                <p class="text-lg md:text-3xl text-slate-300 font-light leading-relaxed mb-16 max-w-3xl">
+                    Driving global digital transformation through "Out of the Box" thinking. Managing stakeholders across <span class="text-white font-bold">5 Continents</span> with onsite leadership experience in <span class="text-white font-bold text-bcgGold">Europe.</span>
+                </p>
+                <div class="flex flex-wrap gap-8 md:gap-12">
+                    <div class="flex flex-col">
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">€460K</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">Cost Avoidance</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">$424K</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">APAC Revenue Growth</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-bcgGold text-4xl md:text-5xl font-black mb-1">5+</span>
+                        <span class="text-[10px] font-bold uppercase tracking-widest opacity-50">Global Modules</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-32 px-10 bg-white reveal">
+        <div class="max-w-[1500px] mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
+                <div class="max-w-2xl">
+                    <span class="section-tag">Value Realization</span>
+                    <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen">Exceptional Results.</h2>
+                </div>
+                <p class="text-slate-500 text-lg max-w-sm italic">Translating complex business challenges into quantifiable economic impact.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="p-10 bento-card rounded-[2.5rem]">
+                    <div class="w-12 h-12 bg-bcgTan rounded-xl flex items-center justify-center mb-8">
+                        <i class="fas fa-microchip text-bcgGold"></i>
+                    </div>
+                    <h4 class="text-4xl font-black text-bcgGreen mb-2">60%</h4>
+                    <p class="text-[10px] font-bold text-bcgGold uppercase tracking-widest mb-4">Process Automation</p>
+                    <p class="text-sm text-slate-500 leading-relaxed">Reduced manual invoice overhead via UiPath RPA integration for AM/NS India.</p>
+                </div>
+                <div class="p-10 bento-card rounded-[2.5rem] bg-bcgGreen text-white border-none">
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-8">
+                        <i class="fas fa-euro-sign text-bcgGold"></i>
+                    </div>
+                    <h4 class="text-4xl font-black mb-2">€460K</h4>
+                    <p class="text-[10px] font-bold text-bcgGold uppercase tracking-widest mb-4">Stakeholder ROI</p>
+                    <p class="text-sm text-slate-300 leading-relaxed">Identified savings through build-vs-buy strategy for ArcelorMittal Europe.</p>
+                </div>
+                <div class="p-10 bento-card rounded-[2.5rem]">
+                    <div class="w-12 h-12 bg-bcgTan rounded-xl flex items-center justify-center mb-8">
+                        <i class="fas fa-database text-bcgGold"></i>
+                    </div>
+                    <h4 class="text-4xl font-black text-bcgGreen mb-2">500K+</h4>
+                    <p class="text-[10px] font-bold text-bcgGold uppercase tracking-widest mb-4">Records Migrated</p>
+                    <p class="text-sm text-slate-500 leading-relaxed">Successful Spanish market onboarding for CBRE with 100% data integrity.</p>
+                </div>
+                <div class="p-10 bento-card rounded-[2.5rem]">
+                    <div class="w-12 h-12 bg-bcgTan rounded-xl flex items-center justify-center mb-8">
+                        <i class="fas fa-clock text-bcgGold"></i>
+                    </div>
+                    <h4 class="text-4xl font-black text-bcgGreen mb-2">3 Days</h4>
+                    <p class="text-[10px] font-bold text-bcgGold uppercase tracking-widest mb-4">Monthly Efficiency</p>
+                    <p class="text-sm text-slate-500 leading-relaxed">Saved per cycle via the Automatic Salary JV Posting Program creation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-32 bg-bcgTan/50 px-10 reveal">
+        <div class="max-w-[1300px] mx-auto">
+            <span class="section-tag text-center">Global Timeline</span>
+            <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen text-center mb-32 italic underline underline-offset-[20px] decoration-bcgGold">The Strategic Narrative</h2>
+
+            <div class="space-y-40 relative">
+                <div class="absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 hidden lg:block"></div>
+
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group">
+                    <div class="lg:text-right">
+                        <span class="text-3xl font-serif italic text-bcgGold">2024 — Present</span>
+                        <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">Algoleap</h3>
+                        <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Global Client: CBRE Digital & Tech</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
+                        <h4 class="text-xl font-bold mb-6 text-bcgGreen underline decoration-bcgGold">Strategic Business Analyst</h4>
+                        <p class="text-slate-600 mb-6 italic leading-relaxed">Directing digital tech roadmaps while managing teams across India, South East Asia, Pacific, and America.</p>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Managing <strong>25+ modules</strong> for global finance transformation.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Localized Spanish market processes, boosting user satisfaction scores.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Reduced incident recurring by 30% via root-cause problem solving.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
+                    <div class="lg:order-2">
+                        <span class="text-3xl font-serif italic text-bcgGold">2023 — 2024</span>
+                        <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">ArcelorMittal</h3>
+                        <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Onsite Luxembourg leadership</p>
+                    </div>
+                    <div class="bg-bcgGreen p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] text-white group-hover:shadow-2xl transition-all">
+                        <h4 class="text-xl font-bold mb-6 text-bcgGold">Business Analyst (Europe)</h4>
+                        <p class="text-slate-300 mb-6 italic">Partnering with European C-suite executives to redefine digital finance landscapes across France, Spain, and Luxembourg.</p>
+                        <ul class="space-y-4 text-sm text-slate-300">
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Delivered <strong>€460K cost avoidance</strong> through Build-vs-Buy assessments.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Achieved <strong>95% user adoption</strong> for Power BI enterprise dashboards.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-check text-bcgGold mt-1"></i><span>Led cross-functional workshops with 15+ senior stakeholders.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
+                    <div class="lg:text-right">
+                        <span class="text-3xl font-serif italic text-bcgGold">2022 — 2023</span>
+                        <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">West End</h3>
+                        <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">Strategic Business Support</p>
+                    </div>
+                    <div class="bg-white p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] shadow-sm border border-slate-100 group-hover:border-bcgGold transition-all">
+                        <p class="text-slate-600 leading-relaxed italic">Bridged high-level business requirements with technical data hygiene. Optimized financial data reporting structures to ensure 100% operational continuity during platform transitions.</p>
+                    </div>
+                </div>
+
+                <div class="relative grid lg:grid-cols-2 gap-20 items-center group reveal">
+                    <div class="lg:order-2">
+                        <span class="text-3xl font-serif italic text-bcgGold">2020 — 2022</span>
+                        <h3 class="text-3xl font-black text-bcgGreen mt-4 uppercase">AM/NS India</h3>
+                        <p class="text-sm font-bold text-slate-400 tracking-[0.3em] uppercase mt-2 italic">SAP Functional Specialist</p>
+                    </div>
+                    <div class="bg-slate-50 p-8 md:p-12 rounded-[2rem] md:rounded-[3rem] border border-slate-200 group-hover:border-bcgGreen transition-all">
+                        <h4 class="text-xl font-bold mb-6 text-bcgGreen">SAP FICO Consultant</h4>
+                        <ul class="space-y-4 text-sm text-slate-600">
+                            <li class="flex gap-4"><i class="fas fa-award text-bcgGold mt-1"></i><span>Developed <strong>Automatic Salary JV Program</strong> (Innovation Award).</span></li>
+                            <li class="flex gap-4"><i class="fas fa-robot text-bcgGold mt-1"></i><span>Saved <strong>₹30 Lacs annually</strong> via UiPath RPA invoice automation.</span></li>
+                            <li class="flex gap-4"><i class="fas fa-shield-check text-bcgGold mt-1"></i><span>Managed SAP GRC compliance for 4,400+ organizational users.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="intellect" class="py-32 bg-bcgDark text-white px-10 reveal">
+        <div class="max-w-[1500px] mx-auto">
+            <span class="section-tag">Deep Research</span>
+            <h2 class="text-5xl md:text-6xl font-serif mb-24 leading-tight">Out of the Box <br><span class="text-bcgGold">Intellect.</span></h2>
+            
+            <div class="grid lg:grid-cols-3 gap-12">
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-brain text-bcgGold text-4xl mb-10"></i>
+                    <h4 class="text-2xl font-bold mb-4">Neural Systems</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking.</p>
+                </div>
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-microchip text-bcgGold text-4xl mb-10"></i>
+                    <h4 class="text-2xl font-bold mb-4">AI: A Black Box</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models.</p>
+                </div>
+                <div class="p-8 md:p-12 border border-white/10 rounded-[2rem] md:rounded-[3rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-chart-pie text-bcgGold text-4xl mb-10"></i>
+                    <h4 class="text-2xl font-bold mb-4">FMCG BCG Matrix</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
+                </div>
+            </div>
+
+            <div class="mt-32 pt-20 border-t border-white/10 grid md:grid-cols-3 gap-16">
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Master's Degree</h5>
+                    <p class="text-xl font-bold">MBA - Operations & Marketing</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.11 CGPA</p>
+                </div>
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Bachelor's Degree</h5>
+                    <p class="text-xl font-bold">BBA - Business Administration / Management</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.06 CGPA</p>
+                </div>
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Technical Foundation Diploma</h5>
+                    <p class="text-xl font-bold">Diploma in Engineering</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 7.77 CGPA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="leadership" class="py-32 bg-white px-10 reveal">
+        <div class="max-w-[1500px] mx-auto">
+            <div class="grid lg:grid-cols-2 gap-24 items-start">
+                <div>
+                    <span class="section-tag">Elite Discipline</span>
+                    <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen mb-12">Command & Integrity.</h2>
+                    <div class="space-y-12">
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 ncc-badge flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-shield-alt text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">NCC 'C' Certificate (Army Wing)</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">The highest possible level in the National Cadet Corps. Represents peak physical discipline and national-level service commitment.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGreen flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-award text-bcgGold text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">CBRE SPOT Award</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">Recognized for "High Impact Delivery & Global Stakeholder Coordination" across APAC and European tech modules.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-star text-white text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">Algoleap Customer Impact Award</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">Awarded for delivering exceptional customer value and driving measurable business impact through strategic initiatives.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-8 items-start">
+                            <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 border-2 border-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
+                                <i class="fas fa-bullseye text-bcgGold text-2xl md:text-3xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl md:text-2xl font-black text-bcgGreen">Customer Centricity Appreciation</h4>
+                                <p class="text-slate-500 mt-4 leading-relaxed">Performance recognition for maintaining high customer focus and providing consistent contributions to organizational goals.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 md:gap-6 sticky top-32">
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                        <i class="fas fa-users-crown text-bcgGold mb-6 text-2xl"></i>
+                        <h5 class="font-bold text-xs uppercase mb-2">Class Lead</h5>
+                        <p class="text-[10px] text-slate-400 italic">5 Years of Liaison Leadership for BBA/MBA programs.</p>
+                    </div>
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                        <i class="fas fa-leaf text-bcgGold mb-6 text-2xl"></i>
+                        <h5 class="font-bold text-xs uppercase mb-2">UNFCCC Green</h5>
+                        <p class="text-[10px] text-slate-400 italic">Global Climate Reality Certified (USA/Online).</p>
+                    </div>
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                        <i class="fas fa-handshake-angle text-bcgGold mb-6 text-2xl"></i>
+                        <h5 class="font-bold text-xs uppercase mb-2">NSS Certified</h5>
+                        <p class="text-[10px] text-slate-400 italic">240+ Hours of high-impact community leadership.</p>
+                    </div>
+                    <div class="p-6 md:p-10 bg-bcgTan rounded-[2rem] md:rounded-[3rem] border border-slate-100 hover:border-bcgGold transition-all">
+                        <i class="fas fa-briefcase text-bcgGold mb-6 text-2xl"></i>
+                        <h5 class="font-bold text-xs uppercase mb-2">Placement Team</h5>
+                        <p class="text-[10px] text-slate-400 italic">Strategized placement roadmaps for 117+ peers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-bcgDark overflow-hidden whitespace-nowrap">
+        <div class="inline-block animate-marquee text-[11px] font-bold text-white/30 uppercase tracking-[0.5em]">
+            HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP • AGILE BUSINESS CONFERENCE • BFSI INSIGHT SUMMIT • TEDx AGRA • CLIMATE REALITY USA • HYSEA DIGITAL 2025 • LUXEMBOURG DATA SUMMIT • EY KNOWLEDGE PARTNERSHIP
+        </div>
+    </section>
+
+    <footer class="bg-white py-32 px-10 text-center border-t border-slate-100">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl md:text-7xl font-serif mb-12 italic text-bcgGreen">Strategic Vision. <br><span class="text-bcgGold">Global Results.</span></h2>
+            <div class="flex justify-center gap-12 mb-20">
+                <a href="https://www.linkedin.com/in/saurabh-srivastav-in/" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/saurabhsrivastav-in" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fab fa-github"></i></a>
+                <a href="mailto:saurabhsrivastav.db@gmail.com" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fas fa-envelope"></i></a>
+                
+                <div class="relative group">
+                    <i class="fas fa-phone text-4xl text-slate-300 hover:text-bcgGold transition-all cursor-pointer"></i>
+                    <span class="absolute bottom-full mb-2 hidden group-hover:inline-block bg-bcgGold text-black font-semibold px-3 py-1 rounded whitespace-nowrap">
+                        +91 77868 03262
+                    </span>
+                </div>
+            </div>
+            <div class="pt-10 border-t border-slate-100 text-[9px] uppercase tracking-[0.6em] font-black text-slate-400">
+                Saurabh Srivastav © 2026 | Multi-National Strategy & Delivery
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const toggleMenu = () => mobileMenu.classList.toggle('active');
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        const backToTop = document.getElementById('backToTop');
+        const reveals = document.querySelectorAll('.reveal');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+
+            reveals.forEach(el => {
+                const windowHeight = window.innerHeight;
+                const elementTop = el.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 150) {
+                    el.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
