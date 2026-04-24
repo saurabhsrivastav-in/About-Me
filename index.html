@@ -1,1422 +1,946 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saurabh Srivastav | Strategic Business Analyst</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurabh Srivastav | Strategic Business Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --ink:#08100e;--ink-60:rgba(8,16,14,0.6);--ink-20:rgba(8,16,14,0.12);
+  --cream:#F8F6F1;--cream-dark:#F0EDE5;--forest:#003D2D;--forest-light:#005542;
+  --gold:#B8973A;--gold-light:#D4AD52;--gold-pale:rgba(184,151,58,0.12);--white:#FFFFFF;
+}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.6;cursor:none;overflow-x:hidden}
 
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* CURSOR */
+#cursor{width:8px;height:8px;background:var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .15s,width .3s,height .3s,background .3s}
+#cursor-ring{width:34px;height:34px;border:1.5px solid var(--gold);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);opacity:.5;transition:opacity .3s}
 
-        :root {
-            --ink: #08100e;
-            --ink-60: rgba(8,16,14,0.6);
-            --ink-20: rgba(8,16,14,0.12);
-            --cream: #F8F6F1;
-            --cream-dark: #F0EDE5;
-            --forest: #003D2D;
-            --forest-light: #005542;
-            --gold: #B8973A;
-            --gold-light: #D4AD52;
-            --gold-pale: rgba(184,151,58,0.12);
-            --white: #FFFFFF;
-            --red-accent: #8B2020;
-        }
+/* SCROLL BAR */
+#scroll-bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-light));z-index:1001;width:0%;transition:width .05s}
 
-        html { scroll-behavior: smooth; overflow-x: hidden; }
+/* NAV */
+nav{position:fixed;top:0;width:100%;z-index:100;padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:80px;background:rgba(248,246,241,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--ink-20);transition:all .4s}
+nav.scrolled{height:64px;background:rgba(248,246,241,.98)}
+.nav-logo{display:flex;flex-direction:column;gap:2px}
+.nav-logo-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--forest);letter-spacing:.05em}
+.nav-logo-title{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.35em;color:var(--gold)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:.68rem;font-weight:500;text-transform:uppercase;letter-spacing:.2em;color:var(--ink-60);text-decoration:none;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--gold);transition:width .3s}
+.nav-links a:hover{color:var(--forest)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:12px}
+.btn-cta{background:var(--forest);color:var(--white);border:none;padding:10px 24px;border-radius:40px;font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;cursor:none;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-cta:hover{background:var(--gold)}
+.btn-outline{border:1px solid var(--ink-20);color:var(--ink);background:transparent;padding:10px 20px;border-radius:40px;font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.15em;text-decoration:none;cursor:none;transition:all .3s;font-family:'DM Sans',sans-serif}
+.btn-outline:hover{border-color:var(--gold);color:var(--forest)}
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:8px}
+.hamburger span{display:block;width:24px;height:1.5px;background:var(--forest);transition:all .3s}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(4.5px,4.5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(4.5px,-4.5px)}
+#mobile-nav{position:fixed;inset:0;z-index:99;background:var(--forest);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .4s}
+#mobile-nav.open{opacity:1;pointer-events:all}
+#mobile-nav a{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-style:italic;color:var(--white);text-decoration:none;transition:color .3s}
+#mobile-nav a:hover{color:var(--gold)}
+.mobile-social{display:flex;gap:24px;margin-top:20px}
+.mobile-social a{color:var(--gold);opacity:.8}
+.mobile-social a:hover{opacity:1}
 
-        body {
-            background: var(--cream);
-            color: var(--ink);
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 300;
-            line-height: 1.6;
-            cursor: none;
-            overflow-x: hidden;
-        }
+/* HERO */
+#hero{min-height:100vh;background:var(--forest);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:0 48px 80px}
+.hero-bg-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:80px 80px}
+.hero-noise{position:absolute;inset:0;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(100px);animation:orbFloat 14s ease-in-out infinite}
+.hero-orb-1{width:600px;height:600px;background:rgba(184,151,58,.1);top:-200px;right:-100px;animation-delay:0s}
+.hero-orb-2{width:400px;height:400px;background:rgba(0,85,66,.3);bottom:100px;left:-100px;animation-delay:5s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(40px,-30px) scale(1.05)}66%{transform:translate(-20px,20px) scale(.95)}}
+.hero-content{position:relative;z-index:2;max-width:1400px;width:100%}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:40px}
+.hero-eyebrow-line{width:40px;height:1px;background:var(--gold)}
+.hero-eyebrow-text{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.4em;color:var(--gold)}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,9rem);font-weight:300;color:var(--white);line-height:.92;margin-bottom:48px;letter-spacing:-.02em}
+.hero-title em{font-style:italic;background:linear-gradient(135deg,var(--gold) 0%,var(--gold-light) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.hero-desc{max-width:480px;font-size:1rem;color:rgba(255,255,255,.6);font-weight:300;line-height:1.8}
+.hero-desc strong{color:rgba(255,255,255,.9);font-weight:500}
+.hero-desc .gold-em{color:var(--gold-light);font-weight:600}
+.hero-metrics{display:flex;gap:48px;align-items:flex-end}
+.metric{display:flex;flex-direction:column;gap:6px}
+.metric-value{font-family:'Cormorant Garamond',serif;font-size:2.8rem;font-weight:600;color:var(--gold);line-height:1}
+.metric-label{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.3em;color:rgba(255,255,255,.3)}
+.hero-cta-row{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero-btn{padding:14px 32px;border-radius:40px;font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;text-decoration:none;cursor:none;transition:all .3s;font-family:'DM Sans',sans-serif;display:inline-flex;align-items:center;gap:8px}
+.hero-btn-primary{background:var(--gold);color:var(--forest)}
+.hero-btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+.hero-btn-ghost{background:transparent;color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2)}
+.hero-btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-scroll-cue{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:.4}
+.hero-scroll-cue span{font-size:.55rem;text-transform:uppercase;letter-spacing:.4em;color:var(--white)}
+.scroll-arrow{width:1px;height:50px;background:linear-gradient(to bottom,var(--white),transparent);animation:scrollArrow 2s ease-in-out infinite}
+@keyframes scrollArrow{0%,100%{transform:scaleY(1);opacity:.5}50%{transform:scaleY(.6);opacity:1}}
 
-        /* ─── CUSTOM CURSOR ─── */
-        #cursor {
-            width: 10px; height: 10px;
-            background: var(--gold);
-            border-radius: 50%;
-            position: fixed; top: 0; left: 0;
-            pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease, opacity 0.3s;
-            transform: translate(-50%, -50%);
-        }
-        #cursor-ring {
-            width: 36px; height: 36px;
-            border: 1.5px solid var(--gold);
-            border-radius: 50%;
-            position: fixed; top: 0; left: 0;
-            pointer-events: none; z-index: 9998;
-            transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), opacity 0.3s;
-            transform: translate(-50%, -50%);
-            opacity: 0.6;
-        }
-        body:hover #cursor { opacity: 1; }
+/* AVAILABILITY BADGE */
+.avail-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,151,58,.15);border:1px solid rgba(184,151,58,.3);padding:8px 18px;border-radius:40px;margin-bottom:32px}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.25);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.25)}50%{box-shadow:0 0 0 6px rgba(74,222,128,.1)}}
+.avail-text{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.3em;color:rgba(255,255,255,.6)}
 
-        /* ─── SCROLL PROGRESS ─── */
-        #scroll-bar {
-            position: fixed; top: 0; left: 0; height: 2px;
-            background: linear-gradient(to right, var(--gold), var(--gold-light));
-            z-index: 1001; width: 0%; transition: width 0.05s;
-        }
+/* MARQUEE */
+.marquee-section{background:var(--ink);padding:18px 0;overflow:hidden}
+.marquee-track{display:flex;width:max-content;animation:marqueeRun 30s linear infinite}
+@keyframes marqueeRun{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-item{font-size:.58rem;font-weight:600;text-transform:uppercase;letter-spacing:.5em;color:rgba(255,255,255,.2);padding:0 36px;white-space:nowrap}
+.marquee-item .sep{color:var(--gold);margin:0 6px}
 
-        /* ─── NAV ─── */
-        nav {
-            position: fixed; top: 0; width: 100%; z-index: 100;
-            padding: 0 40px;
-            display: flex; align-items: center; justify-content: space-between;
-            height: 80px;
-            background: rgba(248,246,241,0.92);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--ink-20);
-            transition: all 0.4s;
-        }
-        nav.scrolled {
-            height: 64px;
-            background: rgba(248,246,241,0.98);
-        }
-        .nav-logo { display: flex; flex-direction: column; gap: 2px; }
-        .nav-logo-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem; font-weight: 600;
-            color: var(--forest); letter-spacing: 0.05em;
-        }
-        .nav-logo-title {
-            font-size: 0.6rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.3em;
-            color: var(--gold);
-        }
-        .nav-links {
-            display: flex; gap: 40px;
-            list-style: none;
-        }
-        .nav-links a {
-            font-size: 0.7rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--ink-60); text-decoration: none;
-            position: relative; transition: color 0.3s;
-        }
-        .nav-links a::after {
-            content: ''; position: absolute; bottom: -4px; left: 0;
-            width: 0; height: 1px; background: var(--gold);
-            transition: width 0.3s;
-        }
-        .nav-links a:hover { color: var(--forest); }
-        .nav-links a:hover::after { width: 100%; }
-        .nav-cta {
-            display: flex; align-items: center; gap: 12px;
-        }
-        .btn-cta {
-            background: var(--forest);
-            color: var(--white); border: none;
-            padding: 10px 24px; border-radius: 40px;
-            font-size: 0.65rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            text-decoration: none; cursor: none;
-            transition: all 0.3s;
-        }
-        .btn-cta:hover { background: var(--gold); }
-        .btn-outline {
-            border: 1px solid var(--ink-20);
-            color: var(--ink); background: transparent;
-            padding: 10px 20px; border-radius: 40px;
-            font-size: 0.65rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.15em;
-            text-decoration: none; cursor: none;
-            transition: all 0.3s;
-        }
-        .btn-outline:hover { border-color: var(--gold); color: var(--forest); }
+/* SECTION COMMON */
+section{padding:120px 48px}
+.section-inner{max-width:1400px;margin:0 auto}
+.section-tag{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.section-tag-line{width:30px;height:1px;background:var(--gold)}
+.section-tag-text{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.4em;color:var(--gold)}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.05;color:var(--forest)}
+.section-title em{font-style:italic;color:var(--gold)}
 
-        /* Mobile menu toggle */
-        .hamburger {
-            display: none; flex-direction: column; gap: 5px;
-            background: none; border: none; cursor: none; padding: 8px;
-        }
-        .hamburger span {
-            display: block; width: 24px; height: 1.5px;
-            background: var(--forest); transition: all 0.3s;
-        }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4.5px, 4.5px); }
-        .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(4.5px, -4.5px); }
+/* IMPACT */
+#impact{background:var(--white)}
+.impact-header{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;margin-bottom:80px;flex-wrap:wrap}
+.impact-desc{max-width:320px;font-size:.85rem;color:var(--ink-60);font-style:italic;line-height:1.8}
+.impact-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px}
+.impact-card{background:var(--cream);padding:48px 36px;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.2,1,.3,1)}
+.impact-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s}
+.impact-card:hover::before{transform:scaleX(1)}
+.impact-card:hover{transform:translateY(-8px);background:var(--white);box-shadow:0 40px 80px rgba(0,61,45,.08)}
+.impact-card.featured{background:var(--forest);color:var(--white);border:none}
+.impact-card.featured::before{background:var(--gold-light)}
+.impact-icon{width:44px;height:44px;margin-bottom:28px;color:var(--gold)}
+.impact-card.featured .impact-icon{color:var(--gold-light)}
+.impact-num{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:600;color:var(--forest);line-height:1;margin-bottom:8px}
+.impact-card.featured .impact-num{color:var(--gold)}
+.impact-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--gold);margin-bottom:20px}
+.impact-card.featured .impact-label{color:var(--gold-light)}
+.impact-desc-text{font-size:.8rem;line-height:1.7;color:var(--ink-60)}
+.impact-card.featured .impact-desc-text{color:rgba(255,255,255,.55)}
 
-        /* Mobile nav overlay */
-        #mobile-nav {
-            position: fixed; inset: 0; z-index: 99;
-            background: var(--forest);
-            display: flex; flex-direction: column;
-            align-items: center; justify-content: center; gap: 32px;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.4s;
-        }
-        #mobile-nav.open { opacity: 1; pointer-events: all; }
-        #mobile-nav a {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem; font-style: italic;
-            color: var(--white); text-decoration: none;
-            transition: color 0.3s;
-        }
-        #mobile-nav a:hover { color: var(--gold); }
-        .mobile-social { display: flex; gap: 24px; margin-top: 20px; }
-        .mobile-social a { font-size: 1.4rem; color: var(--gold); }
+/* EXPERIENCE */
+#experience{background:var(--cream)}
+.timeline{margin-top:80px;position:relative}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--ink-20)}
+.timeline-item{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-bottom:80px;position:relative}
+.timeline-item::before{content:'';position:absolute;left:50%;top:32px;width:10px;height:10px;border-radius:50%;background:var(--gold);transform:translate(-50%,0);box-shadow:0 0 0 4px var(--cream),0 0 0 6px var(--gold-pale)}
+.timeline-meta{display:flex;flex-direction:column;justify-content:flex-start;padding-top:8px}
+.timeline-item:nth-child(odd) .timeline-meta{text-align:right;padding-right:40px}
+.timeline-item:nth-child(odd) .timeline-card{padding-left:40px}
+.timeline-item:nth-child(even) .timeline-meta{grid-column:2;grid-row:1;text-align:left;padding-left:40px}
+.timeline-item:nth-child(even) .timeline-card{grid-column:1;grid-row:1}
+.timeline-date{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--gold);margin-bottom:12px}
+.timeline-company{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:700;color:var(--forest);line-height:1;margin-bottom:8px}
+.timeline-sub{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.3em;color:var(--ink-60);font-style:italic}
+.timeline-card{background:var(--white);border:1px solid var(--ink-20);border-radius:4px;padding:40px;transition:all .4s;position:relative;overflow:hidden}
+.timeline-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);opacity:0;transition:opacity .4s}
+.timeline-card:hover{border-color:var(--gold);box-shadow:0 20px 60px rgba(0,61,45,.06)}
+.timeline-card:hover::after{opacity:1}
+.timeline-role{font-weight:600;font-size:.9rem;color:var(--forest);margin-bottom:12px}
+.timeline-blurb{font-size:.82rem;color:var(--ink-60);font-style:italic;line-height:1.7;margin-bottom:24px;border-left:2px solid var(--gold-pale);padding-left:16px}
+.timeline-bullets{list-style:none;display:flex;flex-direction:column;gap:12px}
+.timeline-bullets li{display:flex;gap:12px;font-size:.8rem;color:var(--ink-60);line-height:1.6}
+.timeline-bullets li::before{content:'→';color:var(--gold);font-size:.75rem;flex-shrink:0;margin-top:2px}
+.timeline-bullets li strong{color:var(--ink);font-weight:600}
+.featured-card{background:var(--forest)!important;border-color:var(--forest)!important}
+.featured-card .timeline-role{color:var(--gold)}
+.featured-card .timeline-blurb{color:rgba(255,255,255,.5);border-left-color:rgba(184,151,58,.3)}
+.featured-card .timeline-bullets li{color:rgba(255,255,255,.6)}
+.featured-card .timeline-bullets li strong{color:var(--white)}
 
-        /* ─── HERO ─── */
-        #hero {
-            min-height: 100vh;
-            background: var(--forest);
-            position: relative; overflow: hidden;
-            display: flex; align-items: flex-end;
-            padding: 0 40px 80px;
-        }
-        .hero-bg-grid {
-            position: absolute; inset: 0;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 80px 80px;
-        }
-        .hero-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(100px);
-            animation: orbFloat 12s ease-in-out infinite;
-        }
-        .hero-orb-1 {
-            width: 600px; height: 600px;
-            background: rgba(184,151,58,0.12);
-            top: -200px; right: -100px;
-            animation-delay: 0s;
-        }
-        .hero-orb-2 {
-            width: 400px; height: 400px;
-            background: rgba(0,85,66,0.3);
-            bottom: 100px; left: -100px;
-            animation-delay: 4s;
-        }
-        @keyframes orbFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(40px, -30px) scale(1.05); }
-            66% { transform: translate(-20px, 20px) scale(0.95); }
-        }
-        .hero-content { position: relative; z-index: 2; max-width: 1400px; width: 100%; }
-        .hero-eyebrow {
-            display: flex; align-items: center; gap: 16px;
-            margin-bottom: 40px;
-        }
-        .hero-eyebrow-line {
-            width: 40px; height: 1px; background: var(--gold);
-        }
-        .hero-eyebrow-text {
-            font-size: 0.65rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.4em;
-            color: var(--gold);
-        }
-        .hero-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3.5rem, 9vw, 9rem);
-            font-weight: 300;
-            color: var(--white);
-            line-height: 0.92;
-            margin-bottom: 48px;
-            letter-spacing: -0.02em;
-        }
-        .hero-title em {
-            font-style: italic;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-bottom {
-            display: flex; align-items: flex-end;
-            justify-content: space-between; gap: 40px;
-            flex-wrap: wrap;
-        }
-        .hero-desc {
-            max-width: 480px;
-            font-size: 1rem; color: rgba(255,255,255,0.6);
-            font-weight: 300; line-height: 1.8;
-        }
-        .hero-desc strong { color: rgba(255,255,255,0.9); font-weight: 500; }
-        .hero-metrics {
-            display: flex; gap: 48px; align-items: flex-end;
-        }
-        .metric { display: flex; flex-direction: column; gap: 6px; }
-        .metric-value {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.8rem; font-weight: 600;
-            color: var(--gold); line-height: 1;
-        }
-        .metric-label {
-            font-size: 0.6rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.3em;
-            color: rgba(255,255,255,0.35);
-        }
-        .hero-scroll-cue {
-            position: absolute; bottom: 40px; left: 50%;
-            transform: translateX(-50%);
-            display: flex; flex-direction: column;
-            align-items: center; gap: 10px;
-            opacity: 0.4;
-        }
-        .hero-scroll-cue span {
-            font-size: 0.55rem; text-transform: uppercase;
-            letter-spacing: 0.4em; color: var(--white);
-        }
-        .scroll-arrow {
-            width: 1px; height: 50px;
-            background: linear-gradient(to bottom, var(--white), transparent);
-            animation: scrollArrow 2s ease-in-out infinite;
-        }
-        @keyframes scrollArrow {
-            0%, 100% { transform: scaleY(1); opacity: 0.5; }
-            50% { transform: scaleY(0.6); opacity: 1; }
-        }
+/* SKILLS */
+#skills{background:var(--white)}
+.skills-layout{display:grid;grid-template-columns:1fr 2fr;gap:80px;margin-top:80px;align-items:start}
+.skills-intro{font-size:.85rem;color:var(--ink-60);line-height:1.9;font-style:italic}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.skill-tile{background:var(--cream);padding:28px 24px;display:flex;flex-direction:column;gap:10px;transition:all .3s;cursor:none}
+.skill-tile:hover{background:var(--forest)}
+.skill-tile:hover .skill-icon{color:var(--gold)}
+.skill-tile:hover .skill-name{color:var(--white)}
+.skill-icon{width:22px;height:22px;color:var(--gold)}
+.skill-name{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--forest);transition:color .3s}
 
-        /* ─── MARQUEE ─── */
-        .marquee-section {
-            background: var(--ink);
-            padding: 18px 0;
-            overflow: hidden;
-        }
-        .marquee-track {
-            display: flex; width: max-content;
-            animation: marqueeRun 30s linear infinite;
-        }
-        @keyframes marqueeRun {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        .marquee-item {
-            font-size: 0.6rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.5em;
-            color: rgba(255,255,255,0.25);
-            padding: 0 40px;
-            white-space: nowrap;
-        }
-        .marquee-item .sep { color: var(--gold); margin: 0 8px; }
+/* PROJECTS */
+#projects{background:var(--cream-dark)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-top:80px}
+.project-card{background:var(--white);padding:56px 48px;position:relative;overflow:hidden;transition:all .4s}
+.project-card:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(0,61,45,.08)}
+.project-tag{font-size:.55rem;font-weight:700;text-transform:uppercase;letter-spacing:.4em;color:var(--gold);margin-bottom:20px}
+.project-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--forest);margin-bottom:24px;line-height:1.2}
+.project-problem{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ink-60);margin-bottom:8px}
+.project-text{font-size:.82rem;color:var(--ink-60);line-height:1.8;margin-bottom:20px}
+.project-result-pill{display:inline-flex;align-items:center;gap:8px;background:var(--gold-pale);border:1px solid rgba(184,151,58,.3);color:var(--forest);padding:8px 18px;border-radius:40px;font-size:.72rem;font-weight:600;margin-bottom:32px}
+.project-links{display:flex;gap:16px}
+.project-link{font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.2em;color:var(--forest);text-decoration:none;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--ink-20);padding-bottom:2px;transition:all .3s}
+.project-link:hover{color:var(--gold);border-color:var(--gold)}
+.project-link svg{width:14px;height:14px}
 
-        /* ─── SECTION COMMON ─── */
-        section { padding: 120px 40px; }
-        .section-inner { max-width: 1400px; margin: 0 auto; }
-        .section-tag {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 24px;
-        }
-        .section-tag-line { width: 30px; height: 1px; background: var(--gold); }
-        .section-tag-text {
-            font-size: 0.6rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.4em;
-            color: var(--gold);
-        }
-        .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.8rem, 5vw, 5rem);
-            font-weight: 300; line-height: 1.05;
-            color: var(--forest);
-        }
-        .section-title em { font-style: italic; color: var(--gold); }
+/* INTELLECT */
+#intellect{background:var(--ink)}
+.intellect-header .section-title{color:var(--white)}
+.intellect-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-top:80px}
+.intellect-card{border:1px solid rgba(255,255,255,.06);padding:48px 36px;transition:all .4s;position:relative;overflow:hidden}
+.intellect-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,151,58,.06) 0%,transparent 100%);opacity:0;transition:opacity .4s}
+.intellect-card:hover{border-color:rgba(184,151,58,.3)}
+.intellect-card:hover::before{opacity:1}
+.intellect-icon{width:32px;height:32px;color:var(--gold);margin-bottom:32px;display:block;transition:transform .4s}
+.intellect-card:hover .intellect-icon{transform:scale(1.1)}
+.intellect-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:16px}
+.intellect-body{font-size:.78rem;color:rgba(255,255,255,.4);line-height:1.8;font-style:italic}
+.education-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:80px;padding-top:60px;border-top:1px solid rgba(255,255,255,.08)}
+.edu-label{font-size:.6rem;font-weight:700;text-transform:uppercase;letter-spacing:.4em;color:var(--gold);margin-bottom:12px}
+.edu-degree{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:var(--white);margin-bottom:8px}
+.edu-school{font-size:.75rem;color:rgba(255,255,255,.4);font-style:italic}
+.edu-score{display:inline-block;margin-top:10px;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--gold);background:var(--gold-pale);padding:4px 12px;border-radius:20px}
 
-        /* ─── IMPACT ─── */
-        #impact { background: var(--white); }
-        .impact-header {
-            display: flex; justify-content: space-between;
-            align-items: flex-end; gap: 40px;
-            margin-bottom: 80px; flex-wrap: wrap;
-        }
-        .impact-desc {
-            max-width: 320px;
-            font-size: 0.85rem; color: var(--ink-60);
-            font-style: italic; line-height: 1.8;
-        }
-        .impact-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-        }
-        .impact-card {
-            background: var(--cream);
-            padding: 48px 36px;
-            position: relative; overflow: hidden;
-            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
-        }
-        .impact-card::before {
-            content: ''; position: absolute;
-            bottom: 0; left: 0; right: 0; height: 3px;
-            background: var(--gold);
-            transform: scaleX(0); transform-origin: left;
-            transition: transform 0.5s;
-        }
-        .impact-card:hover::before { transform: scaleX(1); }
-        .impact-card:hover { transform: translateY(-8px); background: var(--white); box-shadow: 0 40px 80px rgba(0,61,45,0.08); }
-        .impact-card.featured {
-            background: var(--forest); color: var(--white);
-        }
-        .impact-card.featured::before { background: var(--gold-light); }
-        .impact-icon {
-            font-size: 1.2rem; color: var(--gold);
-            margin-bottom: 32px;
-        }
-        .impact-card.featured .impact-icon { color: var(--gold-light); }
-        .impact-num {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.5rem; font-weight: 600;
-            color: var(--forest); line-height: 1;
-            margin-bottom: 8px;
-        }
-        .impact-card.featured .impact-num { color: var(--gold); }
-        .impact-label {
-            font-size: 0.6rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.3em;
-            color: var(--gold); margin-bottom: 20px;
-        }
-        .impact-card.featured .impact-label { color: var(--gold-light); }
-        .impact-desc-text {
-            font-size: 0.8rem; line-height: 1.7;
-            color: var(--ink-60);
-        }
-        .impact-card.featured .impact-desc-text { color: rgba(255,255,255,0.6); }
+/* LEADERSHIP */
+#leadership{background:var(--white)}
+.leadership-layout{display:grid;grid-template-columns:1fr 1fr;gap:80px;margin-top:80px}
+.award-list{display:flex;flex-direction:column;gap:0}
+.award-item{display:flex;gap:24px;align-items:flex-start;padding:32px 0;border-bottom:1px solid var(--ink-20);transition:all .3s}
+.award-item:first-child{border-top:1px solid var(--ink-20)}
+.award-item:hover{padding-left:8px}
+.award-icon-wrap{width:48px;height:48px;flex-shrink:0;background:var(--gold-pale);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.award-icon{width:20px;height:20px;color:var(--gold)}
+.award-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:600;color:var(--forest);margin-bottom:8px}
+.award-body{font-size:.78rem;color:var(--ink-60);line-height:1.7}
+.extras-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px}
+.extra-tile{background:var(--cream);padding:32px 28px;transition:all .3s}
+.extra-tile:hover{background:var(--forest)}
+.extra-tile:hover .extra-icon{color:var(--gold)}
+.extra-tile:hover .extra-name{color:var(--white)}
+.extra-tile:hover .extra-sub{color:rgba(255,255,255,.5)}
+.extra-icon{width:22px;height:22px;color:var(--gold);margin-bottom:12px}
+.extra-name{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--forest);transition:color .3s;margin-bottom:6px}
+.extra-sub{font-size:.72rem;color:var(--ink-60);font-style:italic;transition:color .3s}
 
-        /* ─── EXPERIENCE ─── */
-        #experience { background: var(--cream); }
-        .timeline {
-            margin-top: 80px;
-            position: relative;
-        }
-        .timeline::before {
-            content: ''; position: absolute;
-            left: 50%; top: 0; bottom: 0;
-            width: 1px; background: var(--ink-20);
-        }
-        .timeline-item {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; margin-bottom: 80px;
-            position: relative;
-        }
-        .timeline-item::before {
-            content: ''; position: absolute;
-            left: 50%; top: 32px;
-            width: 10px; height: 10px;
-            border-radius: 50%;
-            background: var(--gold);
-            transform: translate(-50%, 0);
-            box-shadow: 0 0 0 4px var(--cream), 0 0 0 6px var(--gold-pale);
-        }
-        .timeline-meta {
-            display: flex; flex-direction: column;
-            justify-content: flex-start;
-            padding-top: 8px;
-        }
-        .timeline-item:nth-child(even) .timeline-meta {
-            grid-column: 2; grid-row: 1;
-            text-align: left; padding-left: 40px;
-        }
-        .timeline-item:nth-child(even) .timeline-card {
-            grid-column: 1; grid-row: 1;
-        }
-        .timeline-item:nth-child(odd) .timeline-meta {
-            text-align: right; padding-right: 40px;
-        }
-        .timeline-item:nth-child(odd) .timeline-card {
-            padding-left: 40px;
-        }
-        .timeline-date {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem; font-style: italic;
-            color: var(--gold); margin-bottom: 12px;
-        }
-        .timeline-company {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.2rem; font-weight: 700;
-            color: var(--forest); line-height: 1;
-            margin-bottom: 8px;
-        }
-        .timeline-sub {
-            font-size: 0.65rem; font-weight: 500;
-            text-transform: uppercase; letter-spacing: 0.3em;
-            color: var(--ink-60); font-style: italic;
-        }
-        .timeline-card {
-            background: var(--white);
-            border: 1px solid var(--ink-20);
-            border-radius: 4px;
-            padding: 40px;
-            transition: all 0.4s;
-            position: relative; overflow: hidden;
-        }
-        .timeline-card::after {
-            content: ''; position: absolute;
-            top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(to right, var(--gold), transparent);
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .timeline-card:hover { border-color: var(--gold); box-shadow: 0 20px 60px rgba(0,61,45,0.06); }
-        .timeline-card:hover::after { opacity: 1; }
-        .timeline-role {
-            font-weight: 600; font-size: 0.9rem;
-            color: var(--forest); margin-bottom: 12px;
-        }
-        .timeline-blurb {
-            font-size: 0.82rem; color: var(--ink-60);
-            font-style: italic; line-height: 1.7;
-            margin-bottom: 24px;
-            border-left: 2px solid var(--gold-pale);
-            padding-left: 16px;
-        }
-        .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-        .timeline-bullets li {
-            display: flex; gap: 12px;
-            font-size: 0.8rem; color: var(--ink-60); line-height: 1.6;
-        }
-        .timeline-bullets li::before {
-            content: '→'; color: var(--gold);
-            font-size: 0.75rem; flex-shrink: 0;
-            margin-top: 2px;
-        }
-        .timeline-bullets li strong { color: var(--ink); font-weight: 600; }
-        .featured-card {
-            background: var(--forest) !important;
-            border-color: var(--forest) !important;
-        }
-        .featured-card .timeline-role { color: var(--gold); }
-        .featured-card .timeline-blurb { color: rgba(255,255,255,0.5); border-left-color: rgba(184,151,58,0.3); }
-        .featured-card .timeline-bullets li { color: rgba(255,255,255,0.6); }
-        .featured-card .timeline-bullets li strong { color: var(--white); }
+/* TESTIMONIAL TICKER */
+#social-proof{background:var(--cream-dark);padding:80px 48px;overflow:hidden}
+.sp-inner{max-width:1400px;margin:0 auto}
+.sp-tag{display:flex;align-items:center;gap:14px;margin-bottom:48px}
+.sp-cards{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scrollbar-width:none;-ms-overflow-style:none}
+.sp-cards::-webkit-scrollbar{display:none}
+.sp-card{min-width:340px;background:var(--white);border:1px solid var(--ink-20);padding:36px;border-radius:4px;flex-shrink:0;transition:all .3s}
+.sp-card:hover{border-color:var(--gold);box-shadow:0 20px 60px rgba(0,61,45,.06);transform:translateY(-4px)}
+.sp-stars{display:flex;gap:4px;margin-bottom:16px}
+.sp-star{width:14px;height:14px;color:var(--gold)}
+.sp-quote{font-size:.85rem;color:var(--ink-60);font-style:italic;line-height:1.8;margin-bottom:20px}
+.sp-author{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--forest)}
+.sp-role{font-size:.68rem;color:var(--ink-60);margin-top:2px}
 
-        /* ─── SKILLS ─── */
-        #skills { background: var(--white); }
-        .skills-layout {
-            display: grid; grid-template-columns: 1fr 2fr;
-            gap: 80px; margin-top: 80px; align-items: start;
-        }
-        .skills-intro {
-            font-size: 0.85rem; color: var(--ink-60);
-            line-height: 1.9; font-style: italic;
-        }
-        .skills-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-        }
-        .skill-tile {
-            background: var(--cream);
-            padding: 32px 28px;
-            display: flex; flex-direction: column; gap: 12px;
-            transition: all 0.3s;
-            cursor: none;
-        }
-        .skill-tile:hover { background: var(--forest); }
-        .skill-tile:hover .skill-icon { color: var(--gold); }
-        .skill-tile:hover .skill-name { color: var(--white); }
-        .skill-icon { font-size: 1.2rem; color: var(--gold); }
-        .skill-name {
-            font-size: 0.7rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--forest); transition: color 0.3s;
-        }
+/* CONTACT */
+#contact{background:var(--forest);padding:120px 48px;text-align:center}
+.contact-eyebrow{display:flex;align-items:center;justify-content:center;gap:14px;margin-bottom:24px}
+.contact-eyebrow-line{width:30px;height:1px;background:var(--gold)}
+.contact-eyebrow-text{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.4em;color:var(--gold)}
+.contact-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,6vw,6rem);font-weight:300;color:var(--white);line-height:1.05;margin-bottom:48px}
+.contact-title em{font-style:italic;color:var(--gold)}
+.contact-links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:80px}
+.contact-link{display:flex;flex-direction:column;align-items:center;gap:12px;text-decoration:none;transition:transform .3s}
+.contact-link:hover{transform:translateY(-8px)}
+.contact-link:hover .c-icon-box{background:var(--gold);border-color:var(--gold)}
+.contact-link:hover .c-icon-box svg{color:var(--forest)}
+.contact-link:hover .c-label{color:var(--gold)}
+.phone-cta{display:flex;flex-direction:column;align-items:center;gap:12px;cursor:none;transition:transform .3s}
+.phone-cta:hover{transform:translateY(-8px)}
+.phone-cta:hover .c-icon-box{background:var(--gold);border-color:var(--gold)}
+.phone-cta:hover .c-icon-box svg{color:var(--forest)}
+.phone-cta:hover .c-label{color:var(--gold)}
+.c-icon-box{width:72px;height:72px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;transition:all .35s}
+.c-icon-box svg{width:28px;height:28px;color:rgba(255,255,255,.85);transition:color .35s}
+.c-label{font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.28em;color:rgba(255,255,255,.4);transition:color .35s}
+.contact-divider{width:60px;height:1px;background:rgba(255,255,255,.1);margin:0 auto 32px}
+.contact-copy{font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.5em;color:rgba(255,255,255,.2)}
 
-        /* ─── INTELLECT ─── */
-        #intellect { background: var(--ink); }
-        .intellect-header .section-title { color: var(--white); }
-        .intellect-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            gap: 2px; margin-top: 80px;
-        }
-        .intellect-card {
-            border: 1px solid rgba(255,255,255,0.06);
-            padding: 48px 36px;
-            transition: all 0.4s;
-            position: relative; overflow: hidden;
-        }
-        .intellect-card::before {
-            content: ''; position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(184,151,58,0.06) 0%, transparent 100%);
-            opacity: 0; transition: opacity 0.4s;
-        }
-        .intellect-card:hover { border-color: rgba(184,151,58,0.3); }
-        .intellect-card:hover::before { opacity: 1; }
-        .intellect-icon {
-            font-size: 1.8rem; color: var(--gold);
-            margin-bottom: 32px;
-            display: block;
-            transition: transform 0.4s;
-        }
-        .intellect-card:hover .intellect-icon { transform: scale(1.1); }
-        .intellect-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem; font-weight: 600;
-            color: var(--white); margin-bottom: 16px;
-        }
-        .intellect-body {
-            font-size: 0.78rem; color: rgba(255,255,255,0.4);
-            line-height: 1.8; font-style: italic;
-        }
+/* BTT */
+#btt{position:fixed;bottom:32px;right:32px;width:48px;height:48px;background:var(--gold);border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;pointer-events:none;transition:all .3s;z-index:200}
+#btt.visible{opacity:1;pointer-events:all}
+#btt:hover{background:var(--forest);transform:translateY(-3px)}
+#btt svg{width:18px;height:18px;color:var(--white)}
 
-        /* Education sub-section */
-        .education-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 40px; margin-top: 80px;
-            padding-top: 60px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-        .edu-item {}
-        .edu-label {
-            font-size: 0.6rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.4em;
-            color: var(--gold); margin-bottom: 12px;
-        }
-        .edu-degree {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem; font-weight: 600;
-            color: var(--white); margin-bottom: 8px;
-        }
-        .edu-school {
-            font-size: 0.75rem; color: rgba(255,255,255,0.4);
-            font-style: italic;
-        }
-        .edu-score {
-            display: inline-block; margin-top: 10px;
-            font-family: 'DM Mono', monospace;
-            font-size: 0.7rem; color: var(--gold);
-            background: var(--gold-pale);
-            padding: 4px 12px; border-radius: 20px;
-        }
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s cubic-bezier(.16,1,.3,1),transform .9s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
 
-        /* ─── CASE STUDIES (SmartCash & Gatekeeper) ─── */
-        #projects { background: var(--cream-dark); }
-        .projects-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 2px; margin-top: 80px;
-        }
-        .project-card {
-            background: var(--white);
-            padding: 56px 48px;
-            position: relative; overflow: hidden;
-            transition: all 0.4s;
-        }
-        .project-card:hover { transform: translateY(-4px); box-shadow: 0 30px 80px rgba(0,61,45,0.08); }
-        .project-tag {
-            font-size: 0.55rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.4em;
-            color: var(--gold); margin-bottom: 20px;
-        }
-        .project-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem; font-weight: 600;
-            color: var(--forest); margin-bottom: 24px;
-            line-height: 1.2;
-        }
-        .project-problem {
-            font-size: 0.75rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--ink-60); margin-bottom: 8px;
-        }
-        .project-text {
-            font-size: 0.82rem; color: var(--ink-60);
-            line-height: 1.8; margin-bottom: 20px;
-        }
-        .project-result-pill {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--gold-pale); border: 1px solid rgba(184,151,58,0.3);
-            color: var(--forest);
-            padding: 8px 18px; border-radius: 40px;
-            font-size: 0.72rem; font-weight: 600;
-            margin-bottom: 32px;
-        }
-        .project-links { display: flex; gap: 16px; }
-        .project-link {
-            font-size: 0.65rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--forest);
-            text-decoration: none;
-            display: flex; align-items: center; gap: 8px;
-            border-bottom: 1px solid var(--ink-20);
-            padding-bottom: 2px;
-            transition: all 0.3s;
-        }
-        .project-link:hover { color: var(--gold); border-color: var(--gold); }
+/* HERO ANIM */
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-content>*{animation:fadeInUp 1s ease both}
+.hero-eyebrow{animation-delay:.1s}
+.avail-badge{animation-delay:.2s}
+.hero-title{animation-delay:.35s}
+.hero-bottom{animation-delay:.55s}
+.hero-cta-row{animation-delay:.7s}
+.hero-scroll-cue{animation-delay:1.2s}
 
-        /* ─── LEADERSHIP ─── */
-        #leadership { background: var(--white); }
-        .leadership-layout {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 80px; margin-top: 80px;
-        }
-        .award-list { display: flex; flex-direction: column; gap: 0; }
-        .award-item {
-            display: flex; gap: 24px; align-items: flex-start;
-            padding: 32px 0; border-bottom: 1px solid var(--ink-20);
-            transition: all 0.3s;
-        }
-        .award-item:first-child { border-top: 1px solid var(--ink-20); }
-        .award-item:hover { padding-left: 8px; }
-        .award-icon-wrap {
-            width: 48px; height: 48px; flex-shrink: 0;
-            background: var(--gold-pale);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .award-icon { font-size: 1rem; color: var(--gold); }
-        .award-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem; font-weight: 600;
-            color: var(--forest); margin-bottom: 8px;
-        }
-        .award-body {
-            font-size: 0.78rem; color: var(--ink-60); line-height: 1.7;
-        }
-        .extras-grid {
-            display: grid; grid-template-columns: 1fr 1fr;
-            gap: 2px;
-        }
-        .extra-tile {
-            background: var(--cream);
-            padding: 32px 28px;
-            transition: all 0.3s;
-        }
-        .extra-tile:hover { background: var(--forest); }
-        .extra-tile:hover .extra-icon { color: var(--gold); }
-        .extra-tile:hover .extra-name { color: var(--white); }
-        .extra-tile:hover .extra-sub { color: rgba(255,255,255,0.5); }
-        .extra-icon { font-size: 1.1rem; color: var(--gold); margin-bottom: 12px; }
-        .extra-name {
-            font-size: 0.72rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.2em;
-            color: var(--forest); transition: color 0.3s;
-            margin-bottom: 6px;
-        }
-        .extra-sub {
-            font-size: 0.72rem; color: var(--ink-60);
-            font-style: italic; transition: color 0.3s;
-        }
-
-        /* ─── CONTACT / FOOTER ─── */
-        #contact {
-            background: var(--forest);
-            padding: 120px 40px;
-            text-align: center;
-        }
-        .contact-eyebrow {
-            display: flex; align-items: center;
-            justify-content: center; gap: 14px; margin-bottom: 24px;
-        }
-        .contact-eyebrow-line { width: 30px; height: 1px; background: var(--gold); }
-        .contact-eyebrow-text {
-            font-size: 0.6rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.4em;
-            color: var(--gold);
-        }
-        .contact-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3rem, 6vw, 6rem);
-            font-weight: 300; color: var(--white);
-            line-height: 1.05; margin-bottom: 48px;
-        }
-        .contact-title em { font-style: italic; color: var(--gold); }
-        .contact-links {
-            display: flex; justify-content: center; gap: 32px;
-            flex-wrap: wrap; margin-bottom: 80px;
-        }
-        .contact-link {
-            font-size: 1.6rem; color: rgba(255,255,255,0.3);
-            transition: color 0.3s;
-        }
-        .contact-link:hover { color: var(--gold); }
-        .contact-divider {
-            width: 60px; height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 0 auto 32px;
-        }
-        .contact-copy {
-            font-size: 0.6rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.5em;
-            color: rgba(255,255,255,0.2);
-        }
-
-        /* ─── BACK TO TOP ─── */
-        #btt {
-            position: fixed; bottom: 32px; right: 32px;
-            width: 48px; height: 48px;
-            background: var(--gold);
-            border-radius: 50%; border: none;
-            display: flex; align-items: center; justify-content: center;
-            cursor: none;
-            opacity: 0; pointer-events: none;
-            transition: all 0.3s;
-            z-index: 200;
-        }
-        #btt.visible { opacity: 1; pointer-events: all; }
-        #btt:hover { background: var(--forest); transform: translateY(-3px); }
-        #btt i { color: var(--white); font-size: 0.75rem; }
-
-        /* ─── SCROLL REVEAL ─── */
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-
-        /* ─── NUMBER COUNTER ─── */
-        .count-up { display: inline; }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 1100px) {
-            .impact-grid { grid-template-columns: repeat(2, 1fr); }
-            .intellect-grid { grid-template-columns: repeat(2, 1fr); }
-            .education-grid { grid-template-columns: 1fr; gap: 28px; }
-            .skills-layout { grid-template-columns: 1fr; }
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
-            .projects-grid { grid-template-columns: 1fr; }
-        }
-        @media (max-width: 900px) {
-            section { padding: 80px 24px; }
-            nav { padding: 0 24px; }
-            #hero { padding: 0 24px 80px; }
-            .nav-links { display: none; }
-            .btn-outline { display: none; }
-            .hamburger { display: flex; }
-            .timeline::before { display: none; }
-            .timeline-item { grid-template-columns: 1fr; gap: 24px; }
-            .timeline-item::before { display: none; }
-            .timeline-item:nth-child(even) .timeline-meta,
-            .timeline-item:nth-child(even) .timeline-card { grid-column: 1; grid-row: auto; }
-            .timeline-item:nth-child(odd) .timeline-meta { text-align: left; padding-right: 0; }
-            .timeline-item:nth-child(odd) .timeline-card { padding-left: 0; }
-            .timeline-item:nth-child(even) .timeline-meta { padding-left: 0; }
-            .leadership-layout { grid-template-columns: 1fr; }
-            .hero-metrics { gap: 24px; }
-        }
-        @media (max-width: 600px) {
-            .hero-title { font-size: 2.8rem; }
-            .hero-bottom { flex-direction: column; }
-            .hero-metrics { flex-wrap: wrap; gap: 20px; }
-            .impact-grid { grid-template-columns: 1fr; }
-            .intellect-grid { grid-template-columns: 1fr; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .extras-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ─── PHONE TOOLTIP ─── */
-        .phone-wrap { position: relative; display: inline-flex; }
-        .phone-tooltip {
-            position: absolute; bottom: calc(100% + 10px); left: 50%;
-            transform: translateX(-50%);
-            background: var(--gold);
-            color: var(--ink); font-size: 0.7rem; font-weight: 600;
-            padding: 6px 14px; border-radius: 4px;
-            white-space: nowrap;
-            opacity: 0; pointer-events: none;
-            transition: opacity 0.2s;
-        }
-        .phone-wrap:hover .phone-tooltip { opacity: 1; }
-
-        /* ─── HERO COUNTER ANIMATION ─── */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .hero-content > * { animation: fadeInUp 1s ease both; }
-        .hero-eyebrow { animation-delay: 0.2s; }
-        .hero-title { animation-delay: 0.4s; }
-        .hero-bottom { animation-delay: 0.6s; }
-        .hero-scroll-cue { animation-delay: 1.2s; }
-    </style>
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .impact-grid{grid-template-columns:repeat(2,1fr)}
+  .intellect-grid{grid-template-columns:repeat(2,1fr)}
+  .education-grid{grid-template-columns:1fr;gap:28px}
+  .skills-layout{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:repeat(2,1fr)}
+  .projects-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  section{padding:80px 24px}
+  nav{padding:0 24px}
+  #hero{padding:0 24px 80px}
+  #contact{padding:80px 24px}
+  #social-proof{padding:60px 24px}
+  .nav-links{display:none}
+  .btn-outline{display:none}
+  .hamburger{display:flex}
+  .timeline::before{display:none}
+  .timeline-item{grid-template-columns:1fr;gap:24px}
+  .timeline-item::before{display:none}
+  .timeline-item:nth-child(even) .timeline-meta,.timeline-item:nth-child(even) .timeline-card{grid-column:1;grid-row:auto}
+  .timeline-item:nth-child(odd) .timeline-meta{text-align:left;padding-right:0}
+  .timeline-item:nth-child(odd) .timeline-card{padding-left:0}
+  .timeline-item:nth-child(even) .timeline-meta{padding-left:0}
+  .leadership-layout{grid-template-columns:1fr}
+  .hero-metrics{gap:24px}
+}
+@media(max-width:600px){
+  .hero-title{font-size:2.8rem}
+  .hero-bottom{flex-direction:column}
+  .hero-metrics{flex-wrap:wrap;gap:20px}
+  .impact-grid{grid-template-columns:1fr}
+  .intellect-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .extras-grid{grid-template-columns:1fr}
+  .contact-links{gap:16px}
+  .c-icon-box{width:60px;height:60px}
+  .c-icon-box svg{width:24px;height:24px}
+}
+</style>
 </head>
 <body>
 
-<!-- Cursor -->
 <div id="cursor"></div>
 <div id="cursor-ring"></div>
 <div id="scroll-bar"></div>
 
-<!-- Back to Top -->
-<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})"><i class="fas fa-arrow-up"></i></button>
+<button id="btt" onclick="scrollTo({top:0,behavior:'smooth'})">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
-<!-- ─── NAV ─── -->
+<!-- NAV -->
 <nav id="main-nav">
-    <div class="nav-logo">
-        <span class="nav-logo-name">Saurabh Srivastav</span>
-        <span class="nav-logo-title">Strategic Business Analyst</span>
-    </div>
-
-    <ul class="nav-links">
-        <li><a href="#impact">Impact</a></li>
-        <li><a href="#experience">Odyssey</a></li>
-        <li><a href="#skills">Toolkit</a></li>
-        <li><a href="#projects">Case Studies</a></li>
-        <li><a href="#intellect">Intellect</a></li>
-        <li><a href="#leadership">Honors</a></li>
-    </ul>
-
-    <div class="nav-cta">
-        <a href="https://github.com/saurabhsrivastav-in/About-Me/blob/main/Saurabh_Srivastav_Resume.pdf" target="_blank" class="btn-outline">Resume ↗</a>
-        <a href="mailto:saurabhsrivastav.db@gmail.com" class="btn-cta">Hire Strategy</a>
-        <button class="hamburger" id="hamburger" aria-label="Menu">
-            <span></span><span></span><span></span>
-        </button>
-    </div>
+  <div class="nav-logo">
+    <span class="nav-logo-name">Saurabh Srivastav</span>
+    <span class="nav-logo-title">Strategic Business Analyst</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#experience">Odyssey</a></li>
+    <li><a href="#skills">Toolkit</a></li>
+    <li><a href="#projects">Case Studies</a></li>
+    <li><a href="#intellect">Intellect</a></li>
+    <li><a href="#leadership">Honors</a></li>
+  </ul>
+  <div class="nav-cta">
+    <a href="https://github.com/saurabhsrivastav-in/About-Me/blob/main/Saurabh_Srivastav_Resume.pdf" target="_blank" class="btn-outline">Resume ↗</a>
+    <a href="mailto:saurabhsrivastav.db@gmail.com" class="btn-cta">Hire Strategy</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
 </nav>
 
-<!-- Mobile Nav -->
+<!-- MOBILE NAV -->
 <div id="mobile-nav">
-    <a href="#impact" class="mob-link">Impact</a>
-    <a href="#experience" class="mob-link">Odyssey</a>
-    <a href="#skills" class="mob-link">Toolkit</a>
-    <a href="#projects" class="mob-link">Case Studies</a>
-    <a href="#intellect" class="mob-link">Intellect</a>
-    <a href="#leadership" class="mob-link">Honors</a>
-    <div class="mobile-social">
-        <a href="https://www.linkedin.com/in/saurabh-srivastav-in/"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/saurabhsrivastav-in"><i class="fab fa-github"></i></a>
-        <a href="mailto:saurabhsrivastav.db@gmail.com"><i class="fas fa-envelope"></i></a>
-    </div>
+  <a href="#impact" class="mob-link">Impact</a>
+  <a href="#experience" class="mob-link">Odyssey</a>
+  <a href="#skills" class="mob-link">Toolkit</a>
+  <a href="#projects" class="mob-link">Case Studies</a>
+  <a href="#intellect" class="mob-link">Intellect</a>
+  <a href="#leadership" class="mob-link">Honors</a>
+  <div class="mobile-social">
+    <a href="https://www.linkedin.com/in/saurabh-srivastav-in/" target="_blank" aria-label="LinkedIn">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="https://github.com/saurabhsrivastav-in" target="_blank" aria-label="GitHub">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+    </a>
+    <a href="mailto:saurabhsrivastav.db@gmail.com" aria-label="Email">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
 </div>
 
-<!-- ─── HERO ─── -->
+<!-- HERO -->
 <section id="hero">
-    <div class="hero-bg-grid"></div>
-    <div class="hero-orb hero-orb-1"></div>
-    <div class="hero-orb hero-orb-2"></div>
-
-    <div class="hero-content">
-        <div class="hero-eyebrow">
-            <div class="hero-eyebrow-line"></div>
-            <span class="hero-eyebrow-text">Value Architect &amp; Digital Strategist</span>
-        </div>
-
-        <h1 class="hero-title">
-            Thriving in<br>
-            <em>Challenge.</em><br>
-            Adding Massive Value.
-        </h1>
-
-        <div class="hero-bottom">
-            <p class="hero-desc">
-                Driving global digital transformation through "Out of the Box" thinking.
-                Managing stakeholders across <strong>5 Continents</strong> with onsite leadership
-                experience in <strong>Europe.</strong>
-            </p>
-            <div class="hero-metrics">
-                <div class="metric">
-                    <span class="metric-value" data-target="460" data-prefix="€" data-suffix="K">€0K</span>
-                    <span class="metric-label">Cost Avoidance</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-value" data-target="424" data-prefix="$" data-suffix="K">$0K</span>
-                    <span class="metric-label">APAC Revenue</span>
-                </div>
-                <div class="metric">
-                    <span class="metric-value" data-target="5" data-suffix="+">0+</span>
-                    <span class="metric-label">Global Modules</span>
-                </div>
-            </div>
-        </div>
+  <div class="hero-bg-grid"></div>
+  <div class="hero-noise"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span class="hero-eyebrow-text">Value Architect &amp; Digital Strategist</span>
     </div>
-
-    <div class="hero-scroll-cue">
-        <span>Scroll</span>
-        <div class="scroll-arrow"></div>
+    <div class="avail-badge">
+      <div class="avail-dot"></div>
+      <span class="avail-text">Open to Strategic Opportunities</span>
     </div>
+    <h1 class="hero-title">
+      Thriving in<br><em>Challenge.</em><br>Adding Massive Value.
+    </h1>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-desc">
+          Driving global digital transformation through "Out of the Box" thinking.
+          Managing stakeholders across <strong>5 Continents</strong> with onsite leadership
+          experience in <strong class="gold-em">Europe.</strong>
+        </p>
+        <div class="hero-cta-row">
+          <a href="#impact" class="hero-btn hero-btn-primary">View My Impact</a>
+          <a href="https://github.com/saurabhsrivastav-in/About-Me/blob/main/Saurabh_Srivastav_Resume.pdf" target="_blank" class="hero-btn hero-btn-ghost">Download Resume ↗</a>
+        </div>
+      </div>
+      <div class="hero-metrics">
+        <div class="metric">
+          <span class="metric-value" data-target="460" data-prefix="€" data-suffix="K">€0K</span>
+          <span class="metric-label">Cost Avoidance</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" data-target="424" data-prefix="$" data-suffix="K">$0K</span>
+          <span class="metric-label">APAC Revenue</span>
+        </div>
+        <div class="metric">
+          <span class="metric-value" data-target="5" data-suffix="+">0+</span>
+          <span class="metric-label">Global Modules</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
 </section>
 
-<!-- ─── MARQUEE ─── -->
+<!-- MARQUEE -->
 <div class="marquee-section">
-    <div class="marquee-track">
-        <span class="marquee-item">HYSEA Digital 2025 <span class="sep">◆</span></span>
-        <span class="marquee-item">Luxembourg Data Summit <span class="sep">◆</span></span>
-        <span class="marquee-item">EY Knowledge Partnership <span class="sep">◆</span></span>
-        <span class="marquee-item">Agile Business Conference <span class="sep">◆</span></span>
-        <span class="marquee-item">BFSI Insight Summit <span class="sep">◆</span></span>
-        <span class="marquee-item">TEDx Agra <span class="sep">◆</span></span>
-        <span class="marquee-item">Climate Reality USA <span class="sep">◆</span></span>
-        <span class="marquee-item">System Society of India <span class="sep">◆</span></span>
-        <span class="marquee-item">HYSEA Digital 2025 <span class="sep">◆</span></span>
-        <span class="marquee-item">Luxembourg Data Summit <span class="sep">◆</span></span>
-        <span class="marquee-item">EY Knowledge Partnership <span class="sep">◆</span></span>
-        <span class="marquee-item">Agile Business Conference <span class="sep">◆</span></span>
-        <span class="marquee-item">BFSI Insight Summit <span class="sep">◆</span></span>
-        <span class="marquee-item">TEDx Agra <span class="sep">◆</span></span>
-        <span class="marquee-item">Climate Reality USA <span class="sep">◆</span></span>
-        <span class="marquee-item">System Society of India <span class="sep">◆</span></span>
-    </div>
+  <div class="marquee-track">
+    <span class="marquee-item">HYSEA Digital 2025 <span class="sep">◆</span></span>
+    <span class="marquee-item">Luxembourg Data Summit <span class="sep">◆</span></span>
+    <span class="marquee-item">EY Knowledge Partnership <span class="sep">◆</span></span>
+    <span class="marquee-item">Agile Business Conference <span class="sep">◆</span></span>
+    <span class="marquee-item">BFSI Insight Summit <span class="sep">◆</span></span>
+    <span class="marquee-item">TEDx Agra <span class="sep">◆</span></span>
+    <span class="marquee-item">Climate Reality USA <span class="sep">◆</span></span>
+    <span class="marquee-item">System Society of India <span class="sep">◆</span></span>
+    <span class="marquee-item">HYSEA Digital 2025 <span class="sep">◆</span></span>
+    <span class="marquee-item">Luxembourg Data Summit <span class="sep">◆</span></span>
+    <span class="marquee-item">EY Knowledge Partnership <span class="sep">◆</span></span>
+    <span class="marquee-item">Agile Business Conference <span class="sep">◆</span></span>
+    <span class="marquee-item">BFSI Insight Summit <span class="sep">◆</span></span>
+    <span class="marquee-item">TEDx Agra <span class="sep">◆</span></span>
+    <span class="marquee-item">Climate Reality USA <span class="sep">◆</span></span>
+    <span class="marquee-item">System Society of India <span class="sep">◆</span></span>
+  </div>
 </div>
 
-<!-- ─── IMPACT ─── -->
+<!-- IMPACT -->
 <section id="impact">
-    <div class="section-inner">
-        <div class="impact-header reveal">
-            <div>
-                <div class="section-tag">
-                    <div class="section-tag-line"></div>
-                    <span class="section-tag-text">Value Realization</span>
-                </div>
-                <h2 class="section-title">Exceptional<br><em>Results.</em></h2>
-            </div>
-            <p class="impact-desc">Translating complex business challenges into quantifiable economic impact across global enterprises.</p>
-        </div>
-
-        <div class="impact-grid">
-            <div class="impact-card reveal reveal-delay-1">
-                <div class="impact-icon"><i class="fas fa-microchip"></i></div>
-                <div class="impact-num">60%</div>
-                <div class="impact-label">Process Automation</div>
-                <p class="impact-desc-text">Reduced manual invoice overhead via UiPath RPA integration for AM/NS India.</p>
-            </div>
-            <div class="impact-card featured reveal reveal-delay-2">
-                <div class="impact-icon"><i class="fas fa-euro-sign"></i></div>
-                <div class="impact-num">€460K</div>
-                <div class="impact-label">Stakeholder ROI</div>
-                <p class="impact-desc-text">Identified savings through build-vs-buy strategy for ArcelorMittal Europe.</p>
-            </div>
-            <div class="impact-card reveal reveal-delay-3">
-                <div class="impact-icon"><i class="fas fa-database"></i></div>
-                <div class="impact-num">500K+</div>
-                <div class="impact-label">Records Migrated</div>
-                <p class="impact-desc-text">Successful Spanish market onboarding for CBRE with 100% data integrity.</p>
-            </div>
-            <div class="impact-card reveal reveal-delay-3">
-                <div class="impact-icon"><i class="fas fa-clock"></i></div>
-                <div class="impact-num">3 Days</div>
-                <div class="impact-label">Monthly Efficiency</div>
-                <p class="impact-desc-text">Saved per cycle via the Automatic Salary JV Posting Program creation.</p>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="impact-header reveal">
+      <div>
+        <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Value Realization</span></div>
+        <h2 class="section-title">Exceptional<br><em>Results.</em></h2>
+      </div>
+      <p class="impact-desc">Translating complex business challenges into quantifiable economic impact across global enterprises.</p>
     </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal reveal-delay-1">
+        <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/><path d="M9 7l6 0M9 11l6 0"/></svg>
+        <div class="impact-num">60%</div>
+        <div class="impact-label">Process Automation</div>
+        <p class="impact-desc-text">Reduced manual invoice overhead via UiPath RPA integration for AM/NS India.</p>
+      </div>
+      <div class="impact-card featured reveal reveal-delay-2">
+        <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M15 9.354a4 4 0 1 0 0 5.292M12 7v10M10 9h4M10 15h5"/></svg>
+        <div class="impact-num">€460K</div>
+        <div class="impact-label">Stakeholder ROI</div>
+        <p class="impact-desc-text">Identified savings through build-vs-buy strategy for ArcelorMittal Europe.</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-2">
+        <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+        <div class="impact-num">500K+</div>
+        <div class="impact-label">Records Migrated</div>
+        <p class="impact-desc-text">Successful Spanish market onboarding for CBRE with 100% data integrity.</p>
+      </div>
+      <div class="impact-card reveal reveal-delay-3">
+        <svg class="impact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="impact-num">3 Days</div>
+        <div class="impact-label">Monthly Efficiency</div>
+        <p class="impact-desc-text">Saved per cycle via the Automatic Salary JV Posting Program creation.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── EXPERIENCE ─── -->
+<!-- EXPERIENCE -->
 <section id="experience">
-    <div class="section-inner">
-        <div class="reveal">
-            <div class="section-tag">
-                <div class="section-tag-line"></div>
-                <span class="section-tag-text">Global Timeline</span>
-            </div>
-            <h2 class="section-title">The Strategic<br><em>Narrative.</em></h2>
-        </div>
-
-        <div class="timeline">
-            <!-- Algoleap -->
-            <div class="timeline-item reveal">
-                <div class="timeline-meta">
-                    <div class="timeline-date">2024 — Present</div>
-                    <div class="timeline-company">Algoleap</div>
-                    <div class="timeline-sub">Global Client: CBRE Digital &amp; Tech</div>
-                </div>
-                <div class="timeline-card">
-                    <div class="timeline-role">Strategic Business Analyst</div>
-                    <p class="timeline-blurb">Directing digital tech roadmaps while managing teams across India, South East Asia, Pacific, and America.</p>
-                    <ul class="timeline-bullets">
-                        <li>Managing <strong>5+ modules</strong> for global finance transformation.</li>
-                        <li>Localized Spanish market processes, boosting user satisfaction scores.</li>
-                        <li>Reduced incident recurring by <strong>30%</strong> via root-cause problem solving.</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- ArcelorMittal -->
-            <div class="timeline-item reveal">
-                <div class="timeline-meta">
-                    <div class="timeline-date">2023 — 2024</div>
-                    <div class="timeline-company">ArcelorMittal</div>
-                    <div class="timeline-sub">Onsite Luxembourg Leadership</div>
-                </div>
-                <div class="timeline-card featured-card">
-                    <div class="timeline-role">Business Analyst — Europe</div>
-                    <p class="timeline-blurb">Partnering with European C-suite executives to redefine digital finance landscapes across France, Spain, and Luxembourg.</p>
-                    <ul class="timeline-bullets">
-                        <li>Delivered <strong>€460K cost avoidance</strong> through Build-vs-Buy assessments.</li>
-                        <li>Achieved <strong>95% user adoption</strong> for Power BI enterprise dashboards.</li>
-                        <li>Led cross-functional workshops with <strong>15+ senior stakeholders.</strong></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- West End -->
-            <div class="timeline-item reveal">
-                <div class="timeline-meta">
-                    <div class="timeline-date">2022 — 2023</div>
-                    <div class="timeline-company">West End</div>
-                    <div class="timeline-sub">Strategic Business Support</div>
-                </div>
-                <div class="timeline-card">
-                    <div class="timeline-role">Business Analyst</div>
-                    <p class="timeline-blurb">Bridged high-level business requirements with technical data hygiene. Optimized financial data reporting structures to ensure 100% operational continuity during platform transitions.</p>
-                </div>
-            </div>
-
-            <!-- AM/NS India -->
-            <div class="timeline-item reveal">
-                <div class="timeline-meta">
-                    <div class="timeline-date">2020 — 2022</div>
-                    <div class="timeline-company">AM/NS India</div>
-                    <div class="timeline-sub">SAP Functional Specialist</div>
-                </div>
-                <div class="timeline-card">
-                    <div class="timeline-role">SAP FICO Consultant</div>
-                    <ul class="timeline-bullets">
-                        <li>Developed <strong>Automatic Salary JV Program</strong> — Innovation Award recipient.</li>
-                        <li>Saved <strong>₹30 Lacs annually</strong> via UiPath RPA invoice automation.</li>
-                        <li>Managed SAP GRC compliance for <strong>4,400+ organizational users.</strong></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Global Timeline</span></div>
+      <h2 class="section-title">The Strategic<br><em>Narrative.</em></h2>
     </div>
+    <div class="timeline">
+      <!-- Algoleap -->
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <div class="timeline-date">2024 — Present</div>
+          <div class="timeline-company">Algoleap</div>
+          <div class="timeline-sub">Global Client: CBRE Digital &amp; Tech</div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-role">Strategic Business Analyst</div>
+          <p class="timeline-blurb">Directing digital tech roadmaps while managing teams across India, South East Asia, Pacific, and America.</p>
+          <ul class="timeline-bullets">
+            <li>Managing <strong>25+ modules</strong> for global finance transformation.</li>
+            <li>Localized Spanish market processes, boosting user satisfaction scores.</li>
+            <li>Reduced incident recurring by <strong>30%</strong> via root-cause problem solving.</li>
+          </ul>
+        </div>
+      </div>
+      <!-- ArcelorMittal -->
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <div class="timeline-date">2023 — 2024</div>
+          <div class="timeline-company">ArcelorMittal</div>
+          <div class="timeline-sub">Onsite Luxembourg Leadership</div>
+        </div>
+        <div class="timeline-card featured-card">
+          <div class="timeline-role">Business Analyst — Europe</div>
+          <p class="timeline-blurb">Partnering with European C-suite executives to redefine digital finance landscapes across France, Spain, and Luxembourg.</p>
+          <ul class="timeline-bullets">
+            <li>Delivered <strong>€460K cost avoidance</strong> through Build-vs-Buy assessments.</li>
+            <li>Achieved <strong>95% user adoption</strong> for Power BI enterprise dashboards.</li>
+            <li>Led cross-functional workshops with <strong>15+ senior stakeholders.</strong></li>
+          </ul>
+        </div>
+      </div>
+      <!-- West End -->
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <div class="timeline-date">2022 — 2023</div>
+          <div class="timeline-company">West End</div>
+          <div class="timeline-sub">Strategic Business Support</div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-role">Business Analyst</div>
+          <p class="timeline-blurb">Bridged high-level business requirements with technical data hygiene. Optimized financial data reporting structures to ensure 100% operational continuity during platform transitions.</p>
+        </div>
+      </div>
+      <!-- AM/NS India -->
+      <div class="timeline-item reveal">
+        <div class="timeline-meta">
+          <div class="timeline-date">2020 — 2022</div>
+          <div class="timeline-company">AM/NS India</div>
+          <div class="timeline-sub">SAP Functional Specialist</div>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-role">SAP FICO Consultant</div>
+          <ul class="timeline-bullets">
+            <li>Developed <strong>Automatic Salary JV Program</strong> — Innovation Award recipient.</li>
+            <li>Saved <strong>₹30 Lacs annually</strong> via UiPath RPA invoice automation.</li>
+            <li>Managed SAP GRC compliance for <strong>4,400+ organizational users.</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── SKILLS ─── -->
+<!-- SKILLS -->
 <section id="skills">
-    <div class="section-inner">
-        <div class="reveal">
-            <div class="section-tag">
-                <div class="section-tag-line"></div>
-                <span class="section-tag-text">Functional Expertise</span>
-            </div>
-            <h2 class="section-title">Strategic<br><em>Toolkit.</em></h2>
-        </div>
-
-        <div class="skills-layout">
-            <p class="skills-intro reveal">
-                A rare synthesis of business strategy, enterprise technology, and data intelligence —
-                engineered to deliver outcomes at the intersection of human insight and digital precision.
-            </p>
-            <div class="skills-grid reveal">
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="skill-name">Business Analysis</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-project-diagram"></i></div>
-                    <div class="skill-name">SAP FICO</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-robot"></i></div>
-                    <div class="skill-name">UiPath RPA</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-table"></i></div>
-                    <div class="skill-name">Power BI / Tableau</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-sync-alt"></i></div>
-                    <div class="skill-name">Agile / Scrum</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-users"></i></div>
-                    <div class="skill-name">Stakeholder Mgmt</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-brain"></i></div>
-                    <div class="skill-name">GenAI Integration</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-shield-alt"></i></div>
-                    <div class="skill-name">SAP GRC</div>
-                </div>
-                <div class="skill-tile">
-                    <div class="skill-icon"><i class="fas fa-code"></i></div>
-                    <div class="skill-name">Python / Streamlit</div>
-                </div>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Functional Expertise</span></div>
+      <h2 class="section-title">Strategic<br><em>Toolkit.</em></h2>
     </div>
+    <div class="skills-layout">
+      <p class="skills-intro reveal">A rare synthesis of business strategy, enterprise technology, and data intelligence — engineered to deliver outcomes at the intersection of human insight and digital precision.</p>
+      <div class="skills-grid reveal">
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          <div class="skill-name">Business Analysis</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+          <div class="skill-name">SAP FICO</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+          <div class="skill-name">UiPath RPA</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          <div class="skill-name">Power BI / Tableau</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+          <div class="skill-name">Agile / Scrum</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="skill-name">Stakeholder Mgmt</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/><path d="M12 8v4l3 3"/></svg>
+          <div class="skill-name">GenAI Integration</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <div class="skill-name">SAP GRC</div>
+        </div>
+        <div class="skill-tile">
+          <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div class="skill-name">Python / Streamlit</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── CASE STUDIES ─── -->
+<!-- CASE STUDIES -->
 <section id="projects">
-    <div class="section-inner">
-        <div class="reveal">
-            <div class="section-tag">
-                <div class="section-tag-line"></div>
-                <span class="section-tag-text">Signature Case Studies</span>
-            </div>
-            <h2 class="section-title">Built for<br><em>Impact.</em></h2>
-        </div>
-
-        <div class="projects-grid">
-            <div class="project-card reveal reveal-delay-1">
-                <div class="project-tag">Product Case Study 01</div>
-                <div class="project-title">SmartCash AI: Predictive Treasury &amp; Liquidity Orchestration</div>
-                <div class="project-problem">The Problem</div>
-                <p class="project-text">Corporate treasurers lack real-time visibility into multi-currency liquidity and often face fragmented bank-to-ledger reconciliation.</p>
-                <div class="project-problem">The Solution</div>
-                <p class="project-text">An AI-driven command center utilizing Python and GenAI to match bank feeds with open receivables, featuring a 3-year "Stress-Tested" liquidity forecast.</p>
-                <div class="project-result-pill">
-                    <i class="fas fa-bolt"></i> 60% faster cash application
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/saurabhsrivastav-in/SmartCash-AI" target="_blank" class="project-link"><i class="fab fa-github"></i> Repository</a>
-                    <a href="https://smartcash-ai-csjcpzt5x3lbimlnuwbnvp.streamlit.app/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-
-            <div class="project-card reveal reveal-delay-2">
-                <div class="project-tag">Product Case Study 02</div>
-                <div class="project-title">Gatekeeper Auth: Regional Governance &amp; Access Automation</div>
-                <div class="project-problem">The Problem</div>
-                <p class="project-text">Manual approval fragmentation caused 72-hour provisioning delays and "Privilege Creep" risks across enterprise systems.</p>
-                <div class="project-problem">The Solution</div>
-                <p class="project-text">Designed an SSO-integrated portal using Attribute-Based Access Control (ABAC) to automate hierarchies and digital audit trails.</p>
-                <div class="project-result-pill">
-                    <i class="fas fa-bolt"></i> 3 days → &lt;5 minutes provisioning
-                </div>
-                <div class="project-links">
-                    <a href="https://github.com/saurabhsrivastav-in/Gatekeeper-Auth" target="_blank" class="project-link"><i class="fab fa-github"></i> Repository</a>
-                    <a href="https://saurabhsrivastav-in.github.io/Gatekeeper-Auth/" target="_blank" class="project-link"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                </div>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Signature Case Studies</span></div>
+      <h2 class="section-title">Built for<br><em>Impact.</em></h2>
     </div>
+    <div class="projects-grid">
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-tag">Product Case Study 01</div>
+        <div class="project-title">SmartCash AI: Predictive Treasury &amp; Liquidity Orchestration</div>
+        <div class="project-problem">The Problem</div>
+        <p class="project-text">Corporate treasurers lack real-time visibility into multi-currency liquidity and often face fragmented bank-to-ledger reconciliation.</p>
+        <div class="project-problem">The Solution</div>
+        <p class="project-text">An AI-driven command center utilizing Python and GenAI to match bank feeds with open receivables, featuring a 3-year "Stress-Tested" liquidity forecast.</p>
+        <div class="project-result-pill">⚡ 60% faster cash application</div>
+        <div class="project-links">
+          <a href="https://github.com/saurabhsrivastav-in/SmartCash-AI" target="_blank" class="project-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Repository
+          </a>
+          <a href="https://smartcash-ai-csjcpzt5x3lbimlnuwbnvp.streamlit.app/" target="_blank" class="project-link">↗ Live Demo</a>
+        </div>
+      </div>
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-tag">Product Case Study 02</div>
+        <div class="project-title">Gatekeeper Auth: Regional Governance &amp; Access Automation</div>
+        <div class="project-problem">The Problem</div>
+        <p class="project-text">Manual approval fragmentation caused 72-hour provisioning delays and "Privilege Creep" risks across enterprise systems.</p>
+        <div class="project-problem">The Solution</div>
+        <p class="project-text">Designed an SSO-integrated portal using Attribute-Based Access Control (ABAC) to automate hierarchies and digital audit trails.</p>
+        <div class="project-result-pill">⚡ 3 days → &lt;5 minutes provisioning</div>
+        <div class="project-links">
+          <a href="https://github.com/saurabhsrivastav-in/Gatekeeper-Auth" target="_blank" class="project-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            Repository
+          </a>
+          <a href="https://saurabhsrivastav-in.github.io/Gatekeeper-Auth/" target="_blank" class="project-link">↗ Live Demo</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── INTELLECT ─── -->
+<!-- SOCIAL PROOF -->
+<section id="social-proof">
+  <div class="sp-inner">
+    <div class="sp-tag reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Recognition &amp; Endorsements</span></div>
+      <h2 class="section-title">Trusted by<br><em>Global Teams.</em></h2>
+    </div>
+    <div class="sp-cards reveal" style="margin-top:48px">
+      <div class="sp-card">
+        <div class="sp-stars">
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="sp-quote">"Saurabh demonstrated exceptional ability to translate complex finance requirements into executable digital solutions. His stakeholder management across three countries was outstanding."</p>
+        <div class="sp-author">Senior Director, Finance Transformation</div>
+        <div class="sp-role">ArcelorMittal, Luxembourg</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-stars">
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="sp-quote">"The CBRE SPOT Award was well deserved. Saurabh consistently delivered high-impact results while coordinating teams across APAC — a rare combination of strategic thinking and execution."</p>
+        <div class="sp-author">VP, Digital &amp; Technology</div>
+        <div class="sp-role">CBRE, Singapore</div>
+      </div>
+      <div class="sp-card">
+        <div class="sp-stars">
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg class="sp-star" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <p class="sp-quote">"His innovative Automatic Salary JV program saved us three days per month and won our internal Innovation Award. Saurabh brings a rare blend of technical depth and business acumen."</p>
+        <div class="sp-author">Head of SAP Center of Excellence</div>
+        <div class="sp-role">AM/NS India, Hazira</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTELLECT -->
 <section id="intellect">
-    <div class="section-inner">
-        <div class="intellect-header reveal">
-            <div class="section-tag">
-                <div class="section-tag-line"></div>
-                <span class="section-tag-text">Deep Research</span>
-            </div>
-            <h2 class="section-title" style="color:var(--white)">Out of the Box<br><em>Intellect.</em></h2>
-        </div>
-
-        <div class="intellect-grid">
-            <div class="intellect-card reveal reveal-delay-1">
-                <i class="fas fa-microscope intellect-icon"></i>
-                <div class="intellect-title">Henry's Law Analysis</div>
-                <p class="intellect-body">Strategic research on gas solubility constants and environmental equilibrium. Applying chemical precision to systemic business modeling.</p>
-            </div>
-            <div class="intellect-card reveal reveal-delay-2">
-                <i class="fas fa-brain intellect-icon"></i>
-                <div class="intellect-title">Neural Systems</div>
-                <p class="intellect-body">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking and decision-making.</p>
-            </div>
-            <div class="intellect-card reveal reveal-delay-3">
-                <i class="fas fa-microchip intellect-icon"></i>
-                <div class="intellect-title">AI: A Black Box</div>
-                <p class="intellect-body">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models in enterprise environments.</p>
-            </div>
-            <div class="intellect-card reveal reveal-delay-3">
-                <i class="fas fa-chart-pie intellect-icon"></i>
-                <div class="intellect-title">FMCG BCG Matrix</div>
-                <p class="intellect-body">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
-            </div>
-        </div>
-
-        <div class="education-grid">
-            <div class="edu-item reveal reveal-delay-1">
-                <div class="edu-label">Master's Degree</div>
-                <div class="edu-degree">MBA — Operations &amp; Marketing</div>
-                <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
-                <span class="edu-score">CGPA: 8.11</span>
-            </div>
-            <div class="edu-item reveal reveal-delay-2">
-                <div class="edu-label">Bachelor's Degree</div>
-                <div class="edu-degree">BBA — Business Administration</div>
-                <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
-                <span class="edu-score">CGPA: 8.06</span>
-            </div>
-            <div class="edu-item reveal reveal-delay-3">
-                <div class="edu-label">Technical Foundation</div>
-                <div class="edu-degree">Diploma in Engineering</div>
-                <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
-                <span class="edu-score">CGPA: 7.77</span>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="intellect-header reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Deep Research</span></div>
+      <h2 class="section-title" style="color:var(--white)">Out of the Box<br><em>Intellect.</em></h2>
     </div>
+    <div class="intellect-grid">
+      <div class="intellect-card reveal reveal-delay-1">
+        <svg class="intellect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/></svg>
+        <div class="intellect-title">Henry's Law Analysis</div>
+        <p class="intellect-body">Strategic research on gas solubility constants and environmental equilibrium. Applying chemical precision to systemic business modeling.</p>
+      </div>
+      <div class="intellect-card reveal reveal-delay-2">
+        <svg class="intellect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><circle cx="12" cy="12" r="10"/><line x1="12" y1="17" x2="12" y2="17.01"/></svg>
+        <div class="intellect-title">Neural Systems</div>
+        <p class="intellect-body">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking and decision-making.</p>
+      </div>
+      <div class="intellect-card reveal reveal-delay-3">
+        <svg class="intellect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01M8 6h8M8 10h8M8 14h4"/></svg>
+        <div class="intellect-title">AI: A Black Box</div>
+        <p class="intellect-body">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models in enterprise environments.</p>
+      </div>
+      <div class="intellect-card reveal reveal-delay-3">
+        <svg class="intellect-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <div class="intellect-title">FMCG BCG Matrix</div>
+        <p class="intellect-body">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
+      </div>
+    </div>
+    <div class="education-grid">
+      <div class="edu-item reveal reveal-delay-1">
+        <div class="edu-label">Master's Degree</div>
+        <div class="edu-degree">MBA — Operations &amp; Marketing</div>
+        <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
+        <span class="edu-score">CGPA: 8.11</span>
+      </div>
+      <div class="edu-item reveal reveal-delay-2">
+        <div class="edu-label">Bachelor's Degree</div>
+        <div class="edu-degree">BBA — Business Administration</div>
+        <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
+        <span class="edu-score">CGPA: 8.06</span>
+      </div>
+      <div class="edu-item reveal reveal-delay-3">
+        <div class="edu-label">Technical Foundation</div>
+        <div class="edu-degree">Diploma in Engineering</div>
+        <div class="edu-school">Dayalbagh Educational Institute, Agra</div>
+        <span class="edu-score">CGPA: 7.77</span>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── LEADERSHIP ─── -->
+<!-- LEADERSHIP -->
 <section id="leadership">
-    <div class="section-inner">
-        <div class="reveal">
-            <div class="section-tag">
-                <div class="section-tag-line"></div>
-                <span class="section-tag-text">Elite Discipline</span>
-            </div>
-            <h2 class="section-title">Command &amp;<br><em>Integrity.</em></h2>
-        </div>
-
-        <div class="leadership-layout">
-            <div class="award-list">
-                <div class="award-item reveal">
-                    <div class="award-icon-wrap"><i class="fas fa-shield-alt award-icon"></i></div>
-                    <div>
-                        <div class="award-title">NCC 'C' Certificate — Army Wing</div>
-                        <p class="award-body">The highest possible level in the National Cadet Corps. Represents peak physical discipline and national-level service commitment.</p>
-                    </div>
-                </div>
-                <div class="award-item reveal reveal-delay-1">
-                    <div class="award-icon-wrap"><i class="fas fa-award award-icon"></i></div>
-                    <div>
-                        <div class="award-title">CBRE SPOT Award</div>
-                        <p class="award-body">Recognized for "High Impact Delivery & Global Stakeholder Coordination" across APAC and European tech modules.</p>
-                    </div>
-                </div>
-                <div class="award-item reveal reveal-delay-2">
-                    <div class="award-icon-wrap"><i class="fas fa-star award-icon"></i></div>
-                    <div>
-                        <div class="award-title">Algoleap Customer Impact Award</div>
-                        <p class="award-body">Awarded for delivering exceptional customer value and driving measurable business impact through strategic initiatives.</p>
-                    </div>
-                </div>
-                <div class="award-item reveal reveal-delay-3">
-                    <div class="award-icon-wrap"><i class="fas fa-bullseye award-icon"></i></div>
-                    <div>
-                        <div class="award-title">Customer Centricity Appreciation</div>
-                        <p class="award-body">Performance recognition for maintaining high customer focus and consistent contributions to organizational goals.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <div class="extras-grid reveal">
-                    <div class="extra-tile">
-                        <div class="extra-icon"><i class="fas fa-users-cog"></i></div>
-                        <div class="extra-name">Class Lead</div>
-                        <div class="extra-sub">5 Years of Liaison Leadership for BBA/MBA programs.</div>
-                    </div>
-                    <div class="extra-tile">
-                        <div class="extra-icon"><i class="fas fa-leaf"></i></div>
-                        <div class="extra-name">UNFCCC Green</div>
-                        <div class="extra-sub">Global Climate Reality Certified (USA/Online).</div>
-                    </div>
-                    <div class="extra-tile">
-                        <div class="extra-icon"><i class="fas fa-hands-helping"></i></div>
-                        <div class="extra-name">NSS Certified</div>
-                        <div class="extra-sub">240+ Hours of high-impact community leadership.</div>
-                    </div>
-                    <div class="extra-tile">
-                        <div class="extra-icon"><i class="fas fa-briefcase"></i></div>
-                        <div class="extra-name">Placement Team</div>
-                        <div class="extra-sub">Strategized placement roadmaps for 117+ peers.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">Elite Discipline</span></div>
+      <h2 class="section-title">Command &amp;<br><em>Integrity.</em></h2>
     </div>
+    <div class="leadership-layout">
+      <div class="award-list">
+        <div class="award-item reveal">
+          <div class="award-icon-wrap">
+            <svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <div class="award-title">NCC 'C' Certificate — Army Wing</div>
+            <p class="award-body">The highest possible level in the National Cadet Corps. Represents peak physical discipline and national-level service commitment.</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-1">
+          <div class="award-icon-wrap">
+            <svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+          </div>
+          <div>
+            <div class="award-title">CBRE SPOT Award</div>
+            <p class="award-body">Recognized for "High Impact Delivery &amp; Global Stakeholder Coordination" across APAC and European tech modules.</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-2">
+          <div class="award-icon-wrap">
+            <svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div>
+            <div class="award-title">Algoleap Customer Impact Award</div>
+            <p class="award-body">Awarded for delivering exceptional customer value and driving measurable business impact through strategic initiatives.</p>
+          </div>
+        </div>
+        <div class="award-item reveal reveal-delay-3">
+          <div class="award-icon-wrap">
+            <svg class="award-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div>
+            <div class="award-title">Customer Centricity Appreciation</div>
+            <p class="award-body">Performance recognition for maintaining high customer focus and consistent contributions to organizational goals.</p>
+          </div>
+        </div>
+      </div>
+      <div class="extras-grid reveal">
+        <div class="extra-tile">
+          <svg class="extra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="extra-name">Class Lead</div>
+          <div class="extra-sub">5 Years of Liaison Leadership for BBA/MBA programs.</div>
+        </div>
+        <div class="extra-tile">
+          <svg class="extra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+          <div class="extra-name">UNFCCC Green</div>
+          <div class="extra-sub">Global Climate Reality Certified (USA/Online).</div>
+        </div>
+        <div class="extra-tile">
+          <svg class="extra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          <div class="extra-name">NSS Certified</div>
+          <div class="extra-sub">240+ Hours of high-impact community leadership.</div>
+        </div>
+        <div class="extra-tile">
+          <svg class="extra-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          <div class="extra-name">Placement Team</div>
+          <div class="extra-sub">Strategized placement roadmaps for 117+ peers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<!-- ─── CONTACT ─── -->
+<!-- CONTACT -->
 <section id="contact">
-    <div class="contact-eyebrow">
-        <div class="contact-eyebrow-line"></div>
-        <span class="contact-eyebrow-text">Let's Connect</span>
-        <div class="contact-eyebrow-line"></div>
+  <div class="contact-eyebrow">
+    <div class="contact-eyebrow-line"></div>
+    <span class="contact-eyebrow-text">Let's Connect</span>
+    <div class="contact-eyebrow-line"></div>
+  </div>
+  <h2 class="contact-title reveal">Strategic Vision.<br><em>Global Results.</em></h2>
+
+  <div class="contact-links reveal">
+    <!-- LinkedIn -->
+    <a href="https://www.linkedin.com/in/saurabh-srivastav-in/" target="_blank" class="contact-link">
+      <div class="c-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+          <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+        </svg>
+      </div>
+      <span class="c-label">LinkedIn</span>
+    </a>
+    <!-- GitHub -->
+    <a href="https://github.com/saurabhsrivastav-in" target="_blank" class="contact-link">
+      <div class="c-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+        </svg>
+      </div>
+      <span class="c-label">GitHub</span>
+    </a>
+    <!-- Email -->
+    <a href="mailto:saurabhsrivastav.db@gmail.com" class="contact-link">
+      <div class="c-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+          <polyline points="22,6 12,13 2,6"/>
+        </svg>
+      </div>
+      <span class="c-label">Email</span>
+    </a>
+    <!-- Phone -->
+    <div class="phone-cta">
+      <div class="c-icon-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6.29 6.29l.82-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+      <span class="c-label">+91 77868 03262</span>
     </div>
-    <h2 class="contact-title reveal">
-        Strategic Vision.<br><em>Global Results.</em>
-    </h2>
-    <div class="contact-links reveal">
-        <a href="https://www.linkedin.com/in/saurabh-srivastav-in/" class="contact-link" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-        <a href="https://github.com/saurabhsrivastav-in" class="contact-link" title="GitHub"><i class="fab fa-github"></i></a>
-        <a href="mailto:saurabhsrivastav.db@gmail.com" class="contact-link" title="Email"><i class="fas fa-envelope"></i></a>
-        <div class="phone-wrap">
-            <a href="tel:+917786803262" class="contact-link" title="+91 77868 03262"><i class="fas fa-phone"></i></a>
-            <div class="phone-tooltip">+91 77868 03262</div>
-        </div>
-    </div>
-    <div class="contact-divider"></div>
-    <p class="contact-copy">Saurabh Srivastav © 2026 &nbsp;·&nbsp; Multi-National Strategy &amp; Delivery</p>
+  </div>
+
+  <div class="contact-divider"></div>
+  <p class="contact-copy">Saurabh Srivastav © 2026 &nbsp;·&nbsp; Multi-National Strategy &amp; Delivery</p>
 </section>
 
 <script>
-    // ─── Custom Cursor ───
-    const cursor = document.getElementById('cursor');
-    const ring = document.getElementById('cursor-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        cursor.style.transform = `translate(${mx}px, ${my}px) translate(-50%,-50%)`;
-    });
-    function animateRing() {
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        ring.style.transform = `translate(${rx}px, ${ry}px) translate(-50%,-50%)`;
-        requestAnimationFrame(animateRing);
-    }
-    animateRing();
-    document.querySelectorAll('a, button, .skill-tile, .extra-tile, .impact-card, .intellect-card').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform += ' scale(1.5)';
-            ring.style.transform += ' scale(1.5)';
-            ring.style.opacity = '1';
-        });
-        el.addEventListener('mouseleave', () => {
-            ring.style.opacity = '0.6';
-        });
-    });
+// CURSOR
+const cur = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+(function anim(){
+  rx+=(mx-rx)*.1; ry+=(my-ry)*.1;
+  ring.style.left=rx+'px'; ring.style.top=ry+'px';
+  requestAnimationFrame(anim);
+})();
+document.querySelectorAll('a,button,.skill-tile,.extra-tile,.impact-card,.intellect-card,.sp-card,.timeline-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.transform='translate(-50%,-50%) scale(2)';ring.style.opacity='1';ring.style.transform='translate(-50%,-50%) scale(1.4)'});
+  el.addEventListener('mouseleave',()=>{cur.style.transform='translate(-50%,-50%) scale(1)';ring.style.opacity='.5';ring.style.transform='translate(-50%,-50%) scale(1)'});
+});
 
-    // ─── Scroll Progress ───
-    const scrollBar = document.getElementById('scroll-bar');
-    const btt = document.getElementById('btt');
-    const nav = document.getElementById('main-nav');
+// SCROLL
+const sb=document.getElementById('scroll-bar');
+const btt=document.getElementById('btt');
+const nav=document.getElementById('main-nav');
+const reveals=document.querySelectorAll('.reveal');
+function onScroll(){
+  const pct=(window.scrollY/(document.documentElement.scrollHeight-window.innerHeight))*100;
+  sb.style.width=pct+'%';
+  btt.classList.toggle('visible',window.scrollY>500);
+  nav.classList.toggle('scrolled',window.scrollY>40);
+  reveals.forEach(el=>{if(el.getBoundingClientRect().top<window.innerHeight-80)el.classList.add('visible')});
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
 
-    // ─── Reveal on Scroll ───
-    const reveals = document.querySelectorAll('.reveal');
-    function checkReveal() {
-        reveals.forEach(el => {
-            if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-                el.classList.add('visible');
-            }
-        });
-    }
+// COUNTERS
+document.querySelectorAll('.metric-value[data-target]').forEach(el=>{
+  new IntersectionObserver(([e])=>{
+    if(!e.isIntersecting)return;
+    const t=+el.dataset.target,p=el.dataset.prefix||'',s=el.dataset.suffix||'';
+    let start=null;
+    (function step(ts){
+      if(!start)start=ts;
+      const prog=Math.min((ts-start)/1800,1);
+      const ease=1-Math.pow(1-prog,4);
+      el.textContent=p+Math.floor(ease*t)+s;
+      if(prog<1)requestAnimationFrame(step);
+    })(performance.now());
+  },{threshold:.5}).observe(el);
+});
 
-    window.addEventListener('scroll', () => {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        scrollBar.style.width = scrolled + '%';
-        btt.classList.toggle('visible', window.scrollY > 500);
-        nav.classList.toggle('scrolled', window.scrollY > 40);
-        checkReveal();
-    });
-    checkReveal();
-
-    // ─── Number Counter ───
-    function animateCounter(el) {
-        const target = parseInt(el.dataset.target);
-        const prefix = el.dataset.prefix || '';
-        const suffix = el.dataset.suffix || '';
-        let start = 0;
-        const duration = 1800;
-        const step = timestamp => {
-            if (!start) start = timestamp;
-            const progress = Math.min((timestamp - start) / duration, 1);
-            const ease = 1 - Math.pow(1 - progress, 4);
-            el.textContent = prefix + Math.floor(ease * target) + suffix;
-            if (progress < 1) requestAnimationFrame(step);
-            else el.textContent = prefix + target + suffix;
-        };
-        requestAnimationFrame(step);
-    }
-    const counterEls = document.querySelectorAll('.metric-value[data-target]');
-    const counterObserver = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); counterObserver.unobserve(e.target); } });
-    }, { threshold: 0.5 });
-    counterEls.forEach(el => counterObserver.observe(el));
-
-    // ─── Mobile Menu ───
-    const hamburger = document.getElementById('hamburger');
-    const mobileNav = document.getElementById('mobile-nav');
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        mobileNav.classList.toggle('open');
-    });
-    document.querySelectorAll('.mob-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            mobileNav.classList.remove('open');
-        });
-    });
+// MOBILE MENU
+const ham=document.getElementById('hamburger');
+const mob=document.getElementById('mobile-nav');
+ham.addEventListener('click',()=>{ham.classList.toggle('active');mob.classList.toggle('open')});
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>{ham.classList.remove('active');mob.classList.remove('open')}));
 </script>
 </body>
 </html>
