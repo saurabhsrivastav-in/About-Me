@@ -45,22 +45,18 @@
         .hero-gradient { background: linear-gradient(135deg, #004533 0%, #010a08 100%); }
         .section-tag { letter-spacing: 0.4em; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; color: #9e8b56; margin-bottom: 1.5rem; display: block; }
         .ncc-badge { background: linear-gradient(135deg, #9e8b56 0%, #7d6e42 100%); }
-        
         #mobile-menu { transition: transform 0.4s ease-in-out; transform: translateX(100%); }
         #mobile-menu.active { transform: translateX(0); }
-
         .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-
         #backToTop { opacity: 0; transition: opacity 0.3s; pointer-events: none; }
         #backToTop.visible { opacity: 1; pointer-events: auto; }
-
-        /* New Premium Touches */
         .progress-bar { height: 3px; background: #9e8b56; position: fixed; top: 0; left: 0; z-index: 1000; width: 0%; transition: width 0.1s; }
         .gradient-text { background: linear-gradient(to right, #9e8b56, #fff, #9e8b56); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: shine 5s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
     </style>
 </head>
+
 <body class="bg-bcgTan text-slate-900 selection:bg-bcgGold selection:text-white overflow-x-hidden">
 
     <div class="progress-bar" id="scrollProgress"></div>
@@ -114,7 +110,6 @@
                 <path fill="#9e8b56" d="M40,-60C53.3,-53.3,66.7,-46.7,73.3,-33.3C80,-20,80,-6.7,76.7,6.7C73.3,20,66.7,33.3,56.7,46.7C46.7,60,33.3,73.3,20,76.7C6.7,80,-6.7,73.3,-20,66.7C-33.3,60,-46.7,53.3,-60,40C-73.3,26.7,-86.7,13.3,-83.3,0C-80,-13.3,-60,-26.7,-46.7,-40C-33.3,-53.3,-16.7,-66.7,-3.3,-70C10,-73.3,26.7,-66.7,40,-60Z" transform="translate(100 100)" />
             </svg>
         </div>
-        
         <div class="max-w-[1500px] mx-auto w-full relative z-10">
             <div class="max-w-5xl">
                 <span class="section-tag">Value Architect & Digital Strategist</span>
@@ -151,7 +146,6 @@
                 </div>
                 <p class="text-slate-500 text-lg max-w-sm italic">Translating complex business challenges into quantifiable economic impact.</p>
             </div>
-
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div class="p-10 bento-card rounded-[2.5rem]">
                     <div class="w-12 h-12 bg-bcgTan rounded-xl flex items-center justify-center mb-8">
@@ -226,10 +220,9 @@
         <div class="max-w-[1300px] mx-auto">
             <span class="section-tag text-center">Global Timeline</span>
             <h2 class="text-5xl md:text-6xl font-serif text-bcgGreen text-center mb-32 italic underline underline-offset-[20px] decoration-bcgGold">The Strategic Narrative</h2>
-
             <div class="space-y-40 relative">
                 <div class="absolute left-[50%] top-0 bottom-0 w-px bg-slate-200 hidden lg:block"></div>
-
+                
                 <div class="relative grid lg:grid-cols-2 gap-20 items-center group">
                     <div class="lg:text-right">
                         <span class="text-3xl font-serif italic text-bcgGold">2024 — Present</span>
@@ -294,93 +287,51 @@
         </div>
     </section>
 
-<section id="intellect" class="py-32 bg-bcgDark text-white px-10 reveal">
-    <div class="max-w-[1500px] mx-auto">
-        <span class="section-tag">Deep Research</span>
-        <h2 class="text-5xl md:text-6xl font-serif mb-24 leading-tight">Out of the Box <br><span class="text-bcgGold">Intellect.</span></h2>
-        
-        <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-8">
-            <div class="p-8 border border-bcgGold/30 rounded-[2rem] bg-gradient-to-b from-white/5 to-transparent hover:border-bcgGold transition-all group">
-                <i class="fas fa-microscope text-bcgGold text-4xl mb-8 group-hover:scale-110 transition-transform"></i>
-                <h4 class="text-2xl font-bold mb-4">Henry's Law Analysis</h4>
-                <p class="text-slate-400 text-sm leading-relaxed italic">Strategic research on gas solubility constants and environmental equilibrium. Applying chemical precision to systemic business modeling.</p>
+    <section id="intellect" class="py-32 bg-bcgDark text-white px-10 reveal">
+        <div class="max-w-[1500px] mx-auto">
+            <span class="section-tag">Deep Research</span>
+            <h2 class="text-5xl md:text-6xl font-serif mb-24 leading-tight">Out of the Box <br><span class="text-bcgGold">Intellect.</span></h2>
+            <div class="grid lg:grid-cols-2 xl:grid-cols-4 gap-8">
+                <div class="p-8 border border-bcgGold/30 rounded-[2rem] bg-gradient-to-b from-white/5 to-transparent hover:border-bcgGold transition-all group">
+                    <i class="fas fa-microscope text-bcgGold text-4xl mb-8 group-hover:scale-110 transition-transform"></i>
+                    <h4 class="text-2xl font-bold mb-4">Henry's Law Analysis</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Strategic research on gas solubility constants and environmental equilibrium. Applying chemical precision to systemic business modeling.</p>
+                </div>
+                <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-brain text-bcgGold text-4xl mb-8"></i>
+                    <h4 class="text-2xl font-bold mb-4">Neural Systems</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking.</p>
+                </div>
+                <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-microchip text-bcgGold text-4xl mb-8"></i>
+                    <h4 class="text-2xl font-bold mb-4">AI: A Black Box</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models.</p>
+                </div>
+                <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
+                    <i class="fas fa-chart-pie text-bcgGold text-4xl mb-8"></i>
+                    <h4 class="text-2xl font-bold mb-4">FMCG BCG Matrix</h4>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
+                </div>
             </div>
-
-            <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
-                <i class="fas fa-brain text-bcgGold text-4xl mb-8"></i>
-                <h4 class="text-2xl font-bold mb-4">Neural Systems</h4>
-                <p class="text-slate-400 text-sm leading-relaxed italic">"Distribution of Neurons in the Heart-brain representing the Mind" (2017). A neuro-management study on systemic thinking.</p>
-            </div>
-
-            <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
-                <i class="fas fa-microchip text-bcgGold text-4xl mb-8"></i>
-                <h4 class="text-2xl font-bold mb-4">AI: A Black Box</h4>
-                <p class="text-slate-400 text-sm leading-relaxed italic">Presented at System Society of India (2018). Analyzing the technical and ethical opacity of AI models.</p>
-            </div>
-
-            <div class="p-8 border border-white/10 rounded-[2rem] hover:bg-white/5 transition-all">
-                <i class="fas fa-chart-pie text-bcgGold text-4xl mb-8"></i>
-                <h4 class="text-2xl font-bold mb-4">FMCG BCG Matrix</h4>
-                <p class="text-slate-400 text-sm leading-relaxed italic">Practical application of portfolio strategy for product/brand classification in fast-moving sectors (2018).</p>
-            </div>
-        </div>
-
-        <div class="mt-32 pt-20 border-t border-white/10 grid md:grid-cols-3 gap-16">
-            <div>
-                <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Master's Degree</h5>
-                <p class="text-xl font-bold">MBA - Operations & Marketing</p>
-                <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.11 CGPA</p>
-            </div>
-            <div>
-                <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Bachelor's Degree</h5>
-                <p class="text-xl font-bold">BBA - Business Administration</p>
-                <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.06 CGPA</p>
-            </div>
-            <div>
-                <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Technical Foundation</h5>
-                <p class="text-xl font-bold">Diploma in Engineering</p>
-                <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 7.77 CGPA</p>
+            <div class="mt-32 pt-20 border-t border-white/10 grid md:grid-cols-3 gap-16">
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Master's Degree</h5>
+                    <p class="text-xl font-bold">MBA - Operations & Marketing</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.11 CGPA</p>
+                </div>
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Bachelor's Degree</h5>
+                    <p class="text-xl font-bold">BBA - Business Administration</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 8.06 CGPA</p>
+                </div>
+                <div>
+                    <h5 class="text-bcgGold font-black uppercase text-[10px] tracking-widest mb-4">Technical Foundation</h5>
+                    <p class="text-xl font-bold">Diploma in Engineering</p>
+                    <p class="text-xs text-slate-500 italic mt-1 text-bcgGold">Dayalbagh Educational Institute, Agra | 7.77 CGPA</p>
+                </div>
             </div>
         </div>
-    </div>
-</section>
-
-<script>
-    // Scroll Progress Bar
-    window.onscroll = function() {
-        let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-        let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        let scrolled = (winScroll / height) * 100;
-        document.getElementById("scrollProgress").style.width = scrolled + "%";
-        
-        // Back to top visibility
-        const btt = document.getElementById('backToTop');
-        if (winScroll > 500) { btt.classList.add('visible'); } 
-        else { btt.classList.remove('visible'); }
-        
-        // Reveal elements
-        const reveals = document.querySelectorAll(".reveal");
-        reveals.forEach(reveal => {
-            const windowHeight = window.innerHeight;
-            const elementTop = reveal.getBoundingClientRect().top;
-            if (elementTop < windowHeight - 100) { reveal.classList.add("active"); }
-        });
-    };
-
-    // Mobile Menu Logic
-    const menuBtn = document.getElementById('menu-btn');
-    const closeBtn = document.getElementById('close-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    const toggleMenu = () => mobileMenu.classList.toggle('active');
-
-    menuBtn.addEventListener('click', toggleMenu);
-    closeBtn.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
-</script>
-</body>
-</html>
+    </section>
 
     <section id="leadership" class="py-32 bg-white px-10 reveal">
         <div class="max-w-[1500px] mx-auto">
@@ -398,7 +349,6 @@
                                 <p class="text-slate-500 mt-4 leading-relaxed">The highest possible level in the National Cadet Corps. Represents peak physical discipline and national-level service commitment.</p>
                             </div>
                         </div>
-                        
                         <div class="flex gap-8 items-start">
                             <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGreen flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
                                 <i class="fas fa-award text-bcgGold text-2xl md:text-3xl"></i>
@@ -408,7 +358,6 @@
                                 <p class="text-slate-500 mt-4 leading-relaxed">Recognized for "High Impact Delivery & Global Stakeholder Coordination" across APAC and European tech modules.</p>
                             </div>
                         </div>
-
                         <div class="flex gap-8 items-start">
                             <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
                                 <i class="fas fa-star text-white text-2xl md:text-3xl"></i>
@@ -418,7 +367,6 @@
                                 <p class="text-slate-500 mt-4 leading-relaxed">Awarded for delivering exceptional customer value and driving measurable business impact through strategic initiatives.</p>
                             </div>
                         </div>
-
                         <div class="flex gap-8 items-start">
                             <div class="w-16 h-16 md:w-20 md:h-20 shrink-0 border-2 border-bcgGold flex items-center justify-center rounded-2xl md:rounded-3xl shadow-xl">
                                 <i class="fas fa-bullseye text-bcgGold text-2xl md:text-3xl"></i>
@@ -468,64 +416,34 @@
         </div>
     </section>
 
-    <footer class="bg-white py-32 px-10 text-center border-t border-slate-100">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-5xl md:text-7xl font-serif mb-12 italic text-bcgGreen">Strategic Vision. <br><span class="text-bcgGold">Global Results.</span></h2>
-            <div class="flex justify-center gap-12 mb-20">
-                <a href="https://www.linkedin.com/in/saurabh-srivastav-in/" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fab fa-linkedin"></i></a>
-                <a href="https://github.com/saurabhsrivastav-in" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fab fa-github"></i></a>
-                <a href="mailto:saurabhsrivastav.db@gmail.com" class="text-4xl text-slate-300 hover:text-bcgGold transition-all"><i class="fas fa-envelope"></i></a>
-                
-                <div class="relative group">
-                    <i class="fas fa-phone text-4xl text-slate-300 hover:text-bcgGold transition-all cursor-pointer"></i>
-                    <span class="absolute bottom-full mb-2 hidden group-hover:inline-block bg-bcgGold text-black font-semibold px-3 py-1 rounded whitespace-nowrap">
-                        +91 77868 03262
-                    </span>
-                </div>
-            </div>
-            <div class="pt-10 border-t border-slate-100 text-[9px] uppercase tracking-[0.6em] font-black text-slate-400">
-                Saurabh Srivastav © 2026 | Multi-National Strategy & Delivery
-            </div>
-        </div>
-    </footer>
-
     <script>
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("scrollProgress").style.width = scrolled + "%";
+            
+            const btt = document.getElementById('backToTop');
+            if (winScroll > 500) { btt.classList.add('visible'); } 
+            else { btt.classList.remove('visible'); }
+            
+            const reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { reveal.classList.add("active"); }
+            });
+        };
+
         const menuBtn = document.getElementById('menu-btn');
         const closeBtn = document.getElementById('close-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         const mobileLinks = document.querySelectorAll('.mobile-link');
-        const progressBar = document.getElementById('scrollProgress');
-
         const toggleMenu = () => mobileMenu.classList.toggle('active');
 
         menuBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
         mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
-
-        const backToTop = document.getElementById('backToTop');
-        const reveals = document.querySelectorAll('.reveal');
-
-        window.addEventListener('scroll', () => {
-            // Update Progress Bar
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            progressBar.style.width = scrolled + "%";
-
-            if (window.scrollY > 500) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-
-            reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) {
-                    el.classList.add('active');
-                }
-            });
-        });
     </script>
 </body>
 </html>
